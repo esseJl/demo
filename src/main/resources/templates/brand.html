@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <div th:insert="fragments/head::head"></div>
+
+
+</head>
+<body>
+<!--SideBar-->
+<div class="container-fluid ">
+    <div class="row flex-nowrap">
+        <div th:replace="admin::sidebar"></div>
+        <div class="col py-3">
+            <div th:replace="admin::productNavTabs"></div>
+            <!------------------------------------------------------------------------------------------------->
+            <!--content-->
+            <div class="col py-3">
+                <div class="row">
+                    <div class="figure">
+                        <div class="accordion" id="accordionExample">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header align-content-center" id="headingTwo">
+                                    <button class="accordion-button collapsed " type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                        createNewBrand
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <form method="post" enctype="multipart/form-data" th:action="@{/brand/save}"
+                                              th:object="${brand}">
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Brand Name</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                       aria-describedby="emailHelp" th:field="*{brandName}"/>
+                                                <div id="emailHelp" class="form-text">We'll never share your email with
+                                                    anyone
+                                                    else.
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">Default file input
+                                                    example</label>
+                                                <input class="form-control" type="file" name="file" id="formFile"
+                                                       accept="image/png, image/gif, image/jpeg">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne" th:text="#{brands}">
+                                        Brands
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                     aria-labelledby="headingOne"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <table class="table caption-top table-secondary table-responsive"
+                                               th:if="${brands !=null}">
+                                            <thead>
+                                            <caption th:text="#{brands}"></caption>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="brand : ${brands}">
+                                                <td>
+                                                    <span class="btn bg-light position-relative">
+                                                        <span th:text="${brand.getBrandName()}"></span>
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                                                  <a th:href="@{/brand/get/{brandUUID}(brandUUID=${brand.getBrandUUID()})}"
+                                                                     class="text-dark eBtn">
+                                                                    <span class="fa fa-edit"></span>
+                                                                </a>
+                                                            <span class="visually-hidden">unread messages</span>
+                                                        </span>
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <div style="width: 80px" class="position-relative">
+                                                        <img height="40px" width="80px" src="#"
+                                                             class="rounded  shadow m-1 bg-body"
+                                                             th:src="@{/image/{imageUUID}(imageUUID=${brand.getImage().getImageUUID()})}"/>
+                                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning ">
+                                                             <a th:href="@{/image/{imageUUID}(imageUUID=${brand.getImage().getImageUUID()})}"
+                                                                class="text-dark ePBtn">
+                                                                <span class="fa fa-edit"></span>
+                                                                <span class="fa fa-picture-o"></span>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--content END-->
+
+            <!-- Modal -->
+            <div class="myForm">
+                <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="post" enctype="multipart/form-data"
+                                  th:action="@{/brand/update}"
+                            >
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal
+                                        title</h5>
+                                    <button type="button" class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="mb-3">
+                                        <label for="brandNameId"
+                                               class="form-label">Brand Name</label>
+                                        <input type="text" class="form-control"
+                                               id="brandNameId"
+                                               name="brandName"
+                                               aria-describedby="emailHelp"
+                                        />
+                                        <div id="emailHelp1" class="form-text">We'll
+                                            never share your email with
+                                            anyone
+                                            else.
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="hidden" id="brandId" name="branId" value=""/>
+                                    </div>
+                                    <!--
+                                      <div class="mb-3">
+                                          <label for="formFile1" class="form-label">Default
+                                              file input
+                                              example</label>
+                                          <input class="form-control" type="file"
+                                                 name="file" id="formFile1" accept="image/png, image/gif, image/jpeg">
+                                      </div>
+                                    -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Save
+                                        changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------------------------------->
+
+            <!-- Modal -->
+            <div class="myForm2">
+                <div class="modal fade" data-bs-backdrop="static" id="updateImageModal" tabindex="-1"
+                     aria-labelledby="updateImageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-scrollable ">
+                        <div class="modal-content">
+                            <form method="post" enctype="multipart/form-data"
+                                  th:action="@{/image/update}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateImageModalLabel">Modal
+                                        title</h5>
+                                    <button type="button" class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group mb-3">
+                                        <input disabled type="text" class="form-control disabled col-6" name="imageName"
+                                               id="imageNameId"
+                                               aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <span class="input-group-text col-6"><img id="image"
+                                                                                  class="rounded shadow m-1"
+                                                                                  width="100%!important"
+                                                                                  height="50px" src="#"
+                                                                                  alt="image"/></span>
+                                    </div>
+                                    <hr/>
+                                    <div class="mb-3">
+                                        <label for="formFile1" class="form-label">Default
+                                            file input
+                                            example</label>
+                                        <input class="form-control" type="file"
+                                               name="file" id="formFile1" accept="image/png, image/gif, image/jpeg"/>
+                                    </div>
+                                    <div>
+                                        <input type="hidden" id="imageId" name="imageId" value=""/>
+                                    </div>
+
+                                    <!--
+                                       <div class="mb-3">
+                                        <label for="brandNameId"
+                                               class="form-label">Brand Name</label>
+                                        <input type="text" class="form-control"
+                                               id="brandNameId"
+                                               name="brandName"
+                                               aria-describedby="emailHelp"
+                                        />
+                                        <div id="emailHelp1" class="form-text">We'll
+                                            never share your email with
+                                            anyone
+                                            else.
+                                        </div>
+                                    </div>
+
+
+
+                                    -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Save
+                                        changes
+                                    </button>
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close
+                                    </button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------------------------------->
+        </div>
+    </div>
+</div>
+<!--SideBar END-->
+
+
+<div th:insert="fragments/head::javascript"></div>
+</body>
+</html>

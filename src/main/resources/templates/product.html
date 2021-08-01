@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <th:block th:insert="fragments/head::head"></th:block>
+
+    <title></title>
+</head>
+<body>
+
+<!--SideBar-->
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div th:replace="admin::sidebar"></div>
+        <div class="col py-3">
+            <div th:replace="admin::productNavTabs"></div>
+            <br/>
+            <div class="d-grid gap-2">
+                <a class="btn btn-sm btn-success" data-bs-toggle="modal"
+                   data-bs-target="#staticBackdrop">
+                    <span class="fa fa-pencil-square-o"> </span>
+                    New Product
+                </a>
+            </div>
+            <br/>
+
+            <!------------------------------------------------------------------------------------------------->
+            <!--content-->
+            <div class="accordion" id="accordionExample">
+
+                <div class="accordion-item" th:each="product,i : ${products}" th:id="${product.getProductUUID()}">
+                    <h2 class="accordion-header" th:id="'heading-' + ${i.count}">
+                        <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-controls="collapseOne"
+                                th:text="${product.getName() +'    -    '+ product.getSize() + '  -  ' +  #numbers.formatCurrency(product.getPrice()) }"
+                                th:attr="data-bs-target= '#collapse-' +${i.count} , aria-controls= 'collapse-' +${i.count} "
+                                aria-expanded="false">
+                        </button>
+                    </h2>
+                    <div th:id="'collapse-' +${i.count}" class="accordion-collapse collapse "
+                         aria-labelledby="headingOne"
+                         th:attr="aria-labelledby= 'heading-' + ${i.count} "
+                         data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3">
+                                    <a class="btn btn-outline-secondary btnForAddImageId"
+                                       th:href="@{{productId} (productId=${product.getProductUUID()} )}">
+                                        <span class="fa fa-arrow-circle-o-up"></span>
+                                        <span class="fa fa-image"></span>
+                                    </a>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-----------------------------------------------------------------------------------------------
+
+
+            <div class="table-responsive">
+                <table class="table table-secondary" th:if="${products !=null}">
+                    <thead>
+                    <tr>
+                        <td th:text="#{product.name}"></td>
+                        <td th:text="#{product.size}"></td>
+                        <td th:text="#{product.price}"></td>
+                        <td th:text="#{product.brand}"></td>
+                        <td th:text="#{product.images}"></td>
+                        <td th:text="#{product.new.image}"></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="productItem : ${products}">
+                        <td th:text="${productItem.getName()}"></td>
+                        <td th:text="${productItem.getSize()}"></td>
+                        <td th:text="${#numbers.formatCurrency(productItem.getPrice())}"></td>
+                        <td>
+                            <div class="bg-secondary shadow rounded">
+                                <img height="20px" width="40px" src="#"
+                                     class="rounded rotated  shadow m-1 bg-body"
+                                     th:src="@{/image/{imageUUID}(imageUUID=${productItem.getBrand()?.getImage()?.getImageUUID()})}"/>
+                                <span class="text-white"
+                                      th:text="${productItem.getBrand().getBrandName()}"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <a th:href="@{/product/get/{productId} (productId=${productItem.getProductUUID()})}"
+                               class="btn btn-outline-secondary">
+                                <span class="fa fa-image"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a id="btnForGetProductId" class="btn btn-outline-secondary"
+                               th:href="@{/product/get/{productId} (productId=${productItem.getProductUUID()} )}">
+                                <span class="fa fa-arrow-circle-o-up"></span>
+                                <span class="fa fa-image"></span>
+                            </a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            -->
+            <!--content END-->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="addNewImageId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="addNewImageIdBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form th:action="@{/product/save/new/image}" method="post" enctype="multipart/form-data">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addNewImageIdBackdropLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <span class="fa fa-bookmark-o"></span>
+                                    </span>
+                                    <input disabled id="productName" type="text" class="form-control"
+                                           aria-label="Username"
+                                           aria-describedby="basic-addon1">
+                                    <input type="hidden" name="productId" id="productId">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <span class="fa fa-bookmark-o"></span>
+                                    </span>
+                                </div>
+                                <hr/>
+                                <div class="clearfix">
+
+                                </div>
+
+
+                                <hr/>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Default file input example</label>
+                                    <input class="form-control" type="file" id="formFile" name="file"
+                                           accept="image/png, image/gif, image/jpeg">
+                                </div>
+                                <input type="submit" class="btn btn-primary"/>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Second modal4image-->
+            <div class="modal fade" id="exampleModalToggle4img" data-bs-backdrop="static" aria-hidden="true"
+                 aria-labelledby="exampleModalToggleLabel4img" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header align-content-center">
+                            <div class=" " id="exampleModalToggleLabel4img">
+
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <a id="deleteBtnId" class="btn btn-danger"><span
+                                            th:text="#{delete}"></span>
+                                        <span class="fa fa-trash"></span>
+                                    </a>
+                                    <button type="button" class="btn btn-warning" data-bs-target="#addNewImageId"
+                                            data-bs-toggle="modal"
+                                            data-bs-dismiss="modal"><span th:text="#{back}"> </span> <span
+                                            class="fa fa-arrow-circle-o-left"> </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="full4imgId" class="img-fluid" width="100%" height="300px"/>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Second modal4image END-->
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form th:action="@{/product/save}" th:object="${product}" method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="mb-3">
+
+                                    <input type="text" class="form-control" th:field="*{name}"
+                                           th:placeholder="#{product.name}"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" th:field="*{size}"
+                                           th:placeholder="#{product.size}"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" th:field="*{feature}"
+                                           th:placeholder="#{product.feature}"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control " th:field="*{price}"
+                                           th:placeholder="#{product.price}"/>
+                                </div>
+                                <select name="brandUUID" class="form-select" aria-label="Default select example">
+                                    <option th:each="brand : ${brands}" th:value="${brand.getBrandUUID()}"
+                                            th:text="${brand.getBrandName()}">
+                                    </option>
+                                </select>
+
+                                <br/>
+                                <select name="categoryUUID" class="form-select" aria-label="Default select example">
+                                    <option th:each="cat : ${categories}" th:value="${cat.getCategoryUUID()}"
+                                            th:text="${cat.getName()}"></option>
+                                </select>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              th:field="*{description}"
+                                              th:placeholder="#{product.description}"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary"/>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal END-->
+
+            <!------------------------------------------------------------------------------------------------->
+        </div>
+    </div>
+</div>
+<!--SideBar END-->
+
+<div th:insert="fragments/head::javascript"></div>
+</body>
+</html>

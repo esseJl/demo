@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <div th:insert="fragments/head::head"></div>
+
+
+</head>
+<body>
+<!--SideBar-->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div th:replace="admin::sidebar"></div>
+        <div class="col py-3">
+            <div th:replace="admin::productNavTabs"></div>
+            <br/>
+            <div class="d-grid gap-2">
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                    <span th:text="#{category.new}"> </span>
+                    <span class="fa fa-pencil-square-o"> </span>
+                </button>
+            </div>
+            <br/>
+            <!------------------------------------------------------------------------------------------------->
+            <!--content-->
+            <div class="row">
+                <div class="">
+                    <table class="table table-responsive table-secondary" th:if="${categories !=null}">
+                        <thead></thead>
+                        <tbody>
+                        <tr th:each="cat : ${categories}">
+                            <td>
+                                <span class="btn bg-light position-relative">
+                                    <span th:text="${cat.getName()}"></span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                        <a id="edit-btn-category"
+                                           th:href="@{/category/{categoryUUID}(categoryUUID=${cat.getCategoryUUID()})}"
+                                           class=" text-dark">
+                                            <span class="fa fa-edit"></span>
+                                        </a>
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--content END-->
+            <!------------------------------------------------------------------------------------------------->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form th:action="@{/category/save}" th:object="${category}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel" th:text="#{create.new.category}"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1 ">
+                            <span class="fa fa-pencil"></span>
+                        </span>
+                            <input type="text" class="form-control" aria-label="Username" th:field="*{name}"
+                                   aria-describedby="basic-addon1" th:placeholder="#{category.name}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{cancel}">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="edit_staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="edit_staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form th:action="@{/category/update}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_staticBackdropLabel" th:text="#{category.change.name}"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                        <span class="input-group-text" id="edit_basic_addon1 ">
+                            <span class="fa fa-pencil"></span>
+                        </span>
+                            <input type="text" class="form-control" aria-label="Username" id="categoryNameId"
+                                   name="categoryName"
+                                   aria-describedby="basic-addon1"/>
+                            <input type="hidden" id="categoryId" name="categoryId"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" th:text="#{submit}">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{cancel}">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!--SideBar END-->
+
+
+<div th:insert="fragments/head::javascript"></div>
+</body>
+</html>
