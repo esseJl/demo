@@ -2,9 +2,8 @@ package com.example.demo.controller.product;
 
 import com.example.demo.model.brand.ProductBrand;
 import com.example.demo.model.category.ProductCategory;
-import com.example.demo.model.image.Image;
 import com.example.demo.model.product.Product;
-import com.example.demo.service.CategoryService;
+import com.example.demo.service.category.CategoryService;
 import com.example.demo.service.brand.BrandService;
 import com.example.demo.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

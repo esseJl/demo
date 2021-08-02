@@ -83,7 +83,7 @@ public class ImageService {
         String contentType = multipartFile.getContentType();
         System.out.println("contentType: " + contentType);
         if (multipartFile.isEmpty())
-            throw new FileStorageException("multipartFile null");
+            throw new FileStorageException("multipartFile is null");
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         String imageUUID = UUID.randomUUID().toString();

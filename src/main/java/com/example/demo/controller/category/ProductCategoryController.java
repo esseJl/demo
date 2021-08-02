@@ -1,8 +1,7 @@
 package com.example.demo.controller.category;
 
 import com.example.demo.model.category.ProductCategory;
-import com.example.demo.model.image.Image;
-import com.example.demo.service.CategoryService;
+import com.example.demo.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/category")
 public class ProductCategoryController {
     private CategoryService categoryService;
-    private final String active="category";
+    private final String active = "category";
 
     @Autowired
     public ProductCategoryController(CategoryService categoryService) {
@@ -27,7 +26,7 @@ public class ProductCategoryController {
     public String category(Model model) {
         model.addAttribute("categories", categoryService.getAllCategory());
         model.addAttribute("category", new ProductCategory());
-        model.addAttribute("Active",active);
+        model.addAttribute("Active", active);
         return "category";
     }
 
