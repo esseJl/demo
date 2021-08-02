@@ -1,4 +1,4 @@
-package com.example.demo.model.repository.image;
+package com.example.demo.repository.image;
 
 import com.example.demo.model.image.Image;
 import com.example.demo.model.product.Product;

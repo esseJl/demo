@@ -2,7 +2,7 @@ package com.example.demo.service.image;
 
 import com.example.demo.model.image.Image;
 import com.example.demo.model.product.Product;
-import com.example.demo.model.repository.image.ImageRepository;
+import com.example.demo.repository.image.ImageRepository;
 import com.example.demo.service.image.exception.FileStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

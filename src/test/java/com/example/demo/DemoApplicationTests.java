@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.product.Product;
-import com.example.demo.model.repository.product.ProductRepository;
+import com.example.demo.repository.product.ProductRepository;
 import com.github.eloyzone.jalalicalendar.DateConverter;
 import com.github.eloyzone.jalalicalendar.JalaliDate;
 import com.github.eloyzone.jalalicalendar.JalaliDateFormatter;

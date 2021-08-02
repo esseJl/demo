@@ -1,10 +1,9 @@
 package com.example.demo.service.product;
 
 
-import com.example.demo.model.brand.ProductBrand;
 import com.example.demo.model.image.Image;
 import com.example.demo.model.product.Product;
-import com.example.demo.model.repository.product.ProductRepository;
+import com.example.demo.repository.product.ProductRepository;
 import com.example.demo.service.image.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
