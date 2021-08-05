@@ -21,7 +21,7 @@ public class User implements Serializable {
     private boolean credentialsNonExpired;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Role> roles;
 
     public User() {
