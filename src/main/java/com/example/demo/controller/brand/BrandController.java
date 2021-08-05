@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/brand")
+@RequestMapping("/brand/admin")
 public class BrandController {
     private BrandService brandService;
     private final String active = "brand";

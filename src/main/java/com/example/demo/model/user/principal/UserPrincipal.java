@@ -2,14 +2,12 @@ package com.example.demo.model.user.principal;
 
 import com.example.demo.model.role.Role;
 import com.example.demo.model.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class UserPrincipal implements UserDetails {
@@ -26,7 +24,8 @@ public class UserPrincipal implements UserDetails {
         List<Role> roles = this.user.getRoles();
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         for (Role role : roles) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+            System.out.println(new SimpleGrantedAuthority(role.getName()));
         }
 
         return grantedAuthorities;

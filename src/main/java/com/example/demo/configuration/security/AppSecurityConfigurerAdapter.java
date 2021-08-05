@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,15 +25,16 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     private AccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    public AppSecurityConfigurerAdapter(UserDetailsService userDetailsService) {
+    public AppSecurityConfigurerAdapter(UserDetailsService userDetailsService, AccessDeniedHandler accessDeniedHandler) {
         this.userDetailsService = userDetailsService;
+        this.accessDeniedHandler = accessDeniedHandler;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/**/admin/**").hasRole("ADMIN")
+                .antMatchers("/**/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().invalidateHttpSession(true)
@@ -46,6 +48,17 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.userDetailsService(userDetailsService);
+    }
+
+
+   /*
+
+
+
     @Bean
     public AuthenticationProvider authProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -53,7 +66,20 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(getPasswordEncoder());
         return provider;
     }
-   /* @Override
+
+
+
+// create two users, admin and user
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER")
+                .and()
+                .withUser("admin").password("$2a$12$EZRbHfhKWAyeV23wI7dQf.P1aWZkz2DSYlPmC8333qqVanvg6M9Li").roles("ADMIN");
+    }
+
+   @Override
     @Bean
     protected UserDetailsService userDetailsService() {
 
@@ -61,4 +87,6 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         users.add(User.withDefaultPasswordEncoder().username("admin").password("1234").roles("USER").build());
         return new InMemoryUserDetailsManager(users);
     }*/
+
+
 }

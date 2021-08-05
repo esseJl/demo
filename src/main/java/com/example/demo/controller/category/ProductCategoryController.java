@@ -58,7 +58,7 @@ public class ProductCategoryController {
     @RequestMapping(value = "/{categoryUUID}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductCategory getCategory(HttpServletResponse response,
-                                       @PathVariable("categoryUUID") String categoryUUID) throws IOException {
+                                       @PathVariable("categoryUUID") String categoryUUID) {
         return categoryService.findOne(categoryUUID);
     }
 }

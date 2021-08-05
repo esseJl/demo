@@ -1,6 +1,7 @@
 package com.example.demo.model.role;
 
 import com.example.demo.model.user.User;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -49,4 +50,5 @@ public class Role {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
 }
