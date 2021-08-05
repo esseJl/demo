@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import com.example.demo.model.product.Product;
+import com.example.demo.model.user.User;
 import com.example.demo.repository.product.ProductRepository;
+import com.example.demo.repository.user.UserRepository;
 import com.github.eloyzone.jalalicalendar.DateConverter;
 import com.github.eloyzone.jalalicalendar.JalaliDate;
 import com.github.eloyzone.jalalicalendar.JalaliDateFormatter;
@@ -24,9 +26,20 @@ class DemoApplicationTests {
 
     @Autowired
     private ProductRepository repository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private DateConverter converter;
+
+
+    @Test
+    @Transactional
+    void contextLoads2() {
+
+        User user = new User("admin", "pass");
+        userRepository.save(user);
+    }
 
     @Test
     @Transactional

@@ -12,6 +12,9 @@
     <div class="row flex-nowrap">
         <div th:replace="admin::sidebar"></div>
         <div class="col py-3">
+            <div class="alert alert-danger" role="alert" th:if="${errors}">
+                A simple danger alert—check it out!
+            </div>
             <div th:replace="admin::productNavTabs"></div>
             <br/>
             <div class="d-grid gap-2">
@@ -70,6 +73,11 @@
                         </span>
                             <input type="text" class="form-control" aria-label="Username" th:field="*{name}"
                                    aria-describedby="basic-addon1" th:placeholder="#{category.name}">
+                            <div class="form-text" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                                <div class="alert alert-primary" role="alert">
+                                    A simple primary alert—check it out!
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

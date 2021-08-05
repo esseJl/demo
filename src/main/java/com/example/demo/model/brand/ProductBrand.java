@@ -6,6 +6,8 @@ import com.example.demo.model.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,8 @@ public class ProductBrand {
     @Column(unique = true)
     private String brandUUID;
 
+    @NotBlank
+    @Size(min = 2, max = 25)
     private String brandName;
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/brand")
 public class BrandController {
     private BrandService brandService;
-    private final String active="brand";
+    private final String active = "brand";
 
     @Autowired
     public BrandController(BrandService brandService) {
@@ -24,12 +27,16 @@ public class BrandController {
     public String brandHome(Model model) {
         model.addAttribute("brands", brandService.getAllBrand());
         model.addAttribute("brand", new ProductBrand());
-        model.addAttribute("Active",active);
+        model.addAttribute("Active", active);
         return "brand";
     }
 
     @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public String saveNewBrand(@RequestParam("file") MultipartFile file, @ModelAttribute ProductBrand brand) {
+    public String saveNewBrand(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute ProductBrand brand,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "brand";
+        }
         brandService.saveNewBrand(brand, file);
         return "redirect:/brand/home";
     }

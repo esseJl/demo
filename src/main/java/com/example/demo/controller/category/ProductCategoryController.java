@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
@@ -31,7 +33,11 @@ public class ProductCategoryController {
     }
 
     @RequestMapping(path = "/save", method = RequestMethod.POST)
-    public String saveNewCategory(@ModelAttribute ProductCategory category) {
+    public String saveNewCategory(@Valid @ModelAttribute ProductCategory category, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/category/home";
+        }
         categoryService.saveCategory(category);
         return "redirect:/category/home";
     }
