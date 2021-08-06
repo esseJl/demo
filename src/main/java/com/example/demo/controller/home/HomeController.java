@@ -15,7 +15,7 @@ public class HomeController {
 
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public String logout() {
-        return "logout";
+        return "redirect:/login" + "?logout";
     }
 
     @GetMapping("/403")

@@ -1,6 +1,8 @@
 package com.example.demo.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,11 +38,15 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/admin/**").hasRole("ADMIN")
                 .antMatchers("/**/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
+                .requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll().
+                requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
+                .and().httpBasic()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().invalidateHttpSession(true)
                 .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll().and().
-                exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .permitAll()
+                .and().httpBasic().and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
     @Bean
