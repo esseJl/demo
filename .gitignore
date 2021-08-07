@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+node_modules/
+gulpfile.js
+src/main/resources/static/assets/scss/
+package.json
+package-lock.json
