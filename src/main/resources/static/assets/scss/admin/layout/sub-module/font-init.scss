@@ -1,0 +1,50 @@
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/eot/Vazir-Regular-FD.eot");
+    src: url("../fonts/eot/Vazir-Regular-FD.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/woff2/Vazir-Regular-FD.woff2") format("woff2"), url("../fonts/woff/Vazir-Regular-FD.woff") format("woff"),
+        url("../fonts/ttf/Vazir-Regular-FD.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/eot/Vazir-Bold-FD.eot");
+    src: url("../fonts/eot/Vazir-Bold-FD.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/woff2/Vazir-Bold-FD.woff2") format("woff2"),
+        url("../fonts/woff/Vazir-Bold-FD.woff") format("woff"), url("../fonts/ttf/Vazir-Bold-FD.ttf") format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/eot/Vazir-Light-FD.eot");
+    src: url("../fonts/eot/Vazir-Light-FD.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/woff2/Vazir-Light-FD.woff2") format("woff2"),
+        url("../fonts/woff/Vazir-Light-FD.woff") format("woff"),
+        url("../fonts/ttf/Vazir-Light-FD.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/eot/Vazir-Medium-FD.eot");
+    src: url("../fonts/eot/Vazir-Medium-FD.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/woff2/Vazir-Medium-FD.woff2") format("woff2"),
+        url("../fonts/woff/Vazir-Medium-FD.woff") format("woff"),
+        url("../fonts/ttf/Vazir-Medium-FD.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/eot/Vazir-Thin-FD.eot");
+    src: url("../fonts/eot/Vazir-Thin-FD.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/woff2/Vazir-Thin-FD.woff2") format("woff2"),
+        url("../fonts/woff/Vazir-Thin-FD.woff") format("woff"), url("../fonts/ttf/Vazir-Thin-FD.ttf") format("truetype");
+    font-weight: 100;
+}
+
+:root {
+    --bs-font-sans-serif: Vazir;
+}
