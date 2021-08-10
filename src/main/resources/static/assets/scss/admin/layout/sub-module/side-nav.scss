@@ -7,4 +7,28 @@
     top: 0;
     right: 0;
     box-shadow: 0 0 35px 0 #9aa1ab26;
+    padding-top: 70px;
+    .logo{
+        background-color: #313a46;
+        display: block;
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        width: 260px;
+        height: 70px;
+        span{
+            display: block;
+            text-align: center;
+        }
+        .logo-sm{
+            display: none !important;
+        }
+    }
+    .accordion-body{
+        a{
+            padding: 1rem 1.25rem;
+            display: block;
+            text-decoration: none;
+        }
+    }
 }
