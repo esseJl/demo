@@ -37,3 +37,5 @@ node_modules/
 # src/main/resources/static/assets/scss/
 # package.json
 # package-lock.json
+
+src/main/resources/application.properties
