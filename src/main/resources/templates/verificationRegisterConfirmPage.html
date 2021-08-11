@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <th:block th:insert="fragments/head::head"></th:block>
+
+    <title>verificationRegisterConfirm</title>
+</head>
+<body>
+<h1 th:if="${message}" th:text="${message}"></h1>
+<h th:text="${expireDate}"></h>
+</body>
+</html>

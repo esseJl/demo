@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <th:block th:insert="fragments/head::head"></th:block>
+
+    <title>Login Success</title>
+</head>
+
+
+<body>
+<div th:if="${saveUserSuccess}">
+    <p>Register successfully done.</p>
+    <p>User : </p><span th:text="${saveUserSuccess.getEmail()}"></span>
+    <p>VerificationCode Send To </p><span></span>
+    <p>Check email and verify your email address</p>
+</div>
+</body>
+</html>

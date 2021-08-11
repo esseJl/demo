@@ -25,6 +25,13 @@
                             You have been logged out.
                         </div>
                     </div>
+                    <div th:if="${param.saveUserSuccess}">
+                        <div class="alert alert-info">
+                            You have been registered.
+                            please sign in
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control" placeholder="Username">
@@ -33,10 +40,15 @@
                         <label>Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div class="col-12">
+                        <img th:src="@{/captcha-servlet}">
+                        <input/>
+                    </div>
+                    <input type="hidden" name="${_csrf.parameterName}" th:name="${_csrf.getParameterName()}"
+                           value="${_csrf.token}" th:value="${_csrf.getToken()}"/>
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
                             <label class="form-check-label" for="rememberMe"> Remember me</label>
                         </div>
                     </div>
@@ -46,7 +58,10 @@
                 </form>
                 <hr class="mt-4">
                 <div class="col-12">
-                    <p class="text-center mb-0">Have not account yet? <a href="#">Signup</a></p>
+                    <p class="text-center mb-0">Can not remember password?<a th:href="@{/forgetPassword}"
+                                                                             th:text="#{message.resetPassword}">reset</a>
+                    </p>
+                    <p class="text-center mb-0">Have not account yet? <a th:href="@{/register}">Signup</a></p>
                 </div>
             </div>
         </div>

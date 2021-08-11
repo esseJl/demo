@@ -2,11 +2,8 @@ package com.example.demo.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
-import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,10 +35,16 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/admin/**").hasRole("ADMIN")
                 .antMatchers("/**/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
-                .requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll().
-                requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
+                //.requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
                 .and().httpBasic()
                 .and().formLogin().loginPage("/login").permitAll()
+                .and()
+                .rememberMe()
+                .key("rem-me-key")
+                .rememberMeParameter("rememberMe") // it is name of checkbox at login page
+                .rememberMeCookieName("rememberLogin") // it is name of the cookie
+                .tokenValiditySeconds(100) // remember for number of seconds
                 .and().logout().invalidateHttpSession(true)
                 .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll()
