@@ -1,4 +1,4 @@
-.side-nav{
+.side-nav {
     width: 260px;
     background: #313a46;
     z-index: 10;
@@ -8,27 +8,89 @@
     right: 0;
     box-shadow: 0 0 35px 0 #9aa1ab26;
     padding-top: 70px;
-    .logo{
+    .logo {
         background-color: #313a46;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         top: 0;
         z-index: 1;
         width: 260px;
         height: 70px;
-        span{
-            display: block;
-            text-align: center;
-        }
-        .logo-sm{
-            display: none !important;
+        .logo-sm {
+            display: none;
         }
     }
-    .accordion-body{
-        a{
-            padding: 1rem 1.25rem;
+    .accordion {
+        &:not(:first-of-type) {
+            margin-top: 1rem;
+        }
+        .accordion-title {
+            color: #8391a2;
+            padding: 0.7rem 1.25rem;
+            margin: 0;
+            font-size: 0.8rem;
+        }
+        a {
+            padding: 0.6rem 1.25rem;
             display: block;
             text-decoration: none;
+            color: #8391a2;
+            font-size: 0.8rem;
+            &:hover {
+                color: #bccee4;
+            }
+        }
+        i {
+            margin-left: 0.7rem;
+            &::before{
+                transition: color .15s ease-in-out;
+            }
+        }
+        .accordion-item {
+            background-color: transparent;
+            border: none;
+        }
+
+        .accordion-button {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.9rem;
+            background-color: transparent;
+            color: #8391a2;
+
+            &:hover {
+                color: #bccee4;
+                i:before {
+                    color: #bccee4;
+                }
+            }
+            &:focus {
+                box-shadow: none;
+            }
+            &::after {
+                background-image: url("../images/svg-icon/acc-arrow.svg");
+                background-size: 10px;
+                background-position: center;
+                transform: rotate(90deg);
+                transform-origin: 50% 50%;
+            }
+            &:not(.collapsed) {
+                color: #fff;
+                background-color: transparent;
+                box-shadow: none;
+                &::after {
+                    transform: rotate(180deg) !important;
+                }
+            }
+        }
+        .accordion-button[aria-expanded="true"] {
+            i:before {
+                color: #fff;
+            }
+        }
+        .accordion-body {
+            padding: 0 1.25rem;
         }
     }
 }

@@ -1,5 +1,4 @@
-
-.site-header{
+.site-header {
     padding: 0 24px;
     background-color: #fff;
     box-shadow: 0 0 35px 0 #9aa1ab26;
@@ -9,4 +8,24 @@
     top: 0;
     left: 0;
     z-index: 1001;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-form{
+    display: flex;
+}
+.toolbar-menu {
+    > ul {
+        display: flex;
+    }
+    .account-user-avatar img {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+    }
+    .account-user-name,
+    .account-position {
+        display: block;
+    }
 }

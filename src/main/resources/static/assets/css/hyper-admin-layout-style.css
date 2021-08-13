@@ -31,6 +31,47 @@
 :root {
   --bs-font-sans-serif: Vazir; }
 
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/font-icon/icomoon.eot?yno7tj");
+  src: url("../fonts/font-icon/icomoon.eot?yno7tj#iefix") format("embedded-opentype"), url("../fonts/font-icon/icomoon.ttf?yno7tj") format("truetype"), url("../fonts/font-icon/icomoon.woff?yno7tj") format("woff"), url("../fonts/font-icon/icomoon.svg?yno7tj#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block; }
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-acc-arrow:before {
+  content: "\e900";
+  color: #8391a2; }
+
+.icon-close:before {
+  content: "\e901";
+  color: #8391a2; }
+
+.icon-dashboard:before {
+  content: "\e902";
+  color: #8391a2; }
+
+.icon-hamburger:before {
+  content: "\e903";
+  color: #8391a2; }
+
+.icon-settings:before {
+  content: "\e904";
+  color: #8391a2; }
+
 .site-header {
   padding: 0 24px;
   background-color: #fff;
@@ -40,7 +81,25 @@
   right: 260px;
   top: 0;
   left: 0;
-  z-index: 1001; }
+  z-index: 1001;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.search-form {
+  display: flex; }
+
+.toolbar-menu > ul {
+  display: flex; }
+
+.toolbar-menu .account-user-avatar img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%; }
+
+.toolbar-menu .account-user-name,
+.toolbar-menu .account-position {
+  display: block; }
 
 .site-footer {
   border-top: 1px solid #98a6ad33;
@@ -63,21 +122,94 @@
   padding-top: 70px; }
   .side-nav .logo {
     background-color: #313a46;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     z-index: 1;
     width: 260px;
     height: 70px; }
-    .side-nav .logo span {
-      display: block;
-      text-align: center; }
     .side-nav .logo .logo-sm {
-      display: none !important; }
-  .side-nav .accordion-body a {
-    padding: 1rem 1.25rem;
+      display: none; }
+  .side-nav .accordion:not(:first-of-type) {
+    margin-top: 1rem; }
+  .side-nav .accordion .accordion-title {
+    color: #8391a2;
+    padding: 0.7rem 1.25rem;
+    margin: 0;
+    font-size: 0.8rem; }
+  .side-nav .accordion a {
+    padding: 0.6rem 1.25rem;
     display: block;
-    text-decoration: none; }
+    text-decoration: none;
+    color: #8391a2;
+    font-size: 0.8rem; }
+    .side-nav .accordion a:hover {
+      color: #bccee4; }
+  .side-nav .accordion i {
+    margin-left: 0.7rem; }
+    .side-nav .accordion i::before {
+      transition: color .15s ease-in-out; }
+  .side-nav .accordion .accordion-item {
+    background-color: transparent;
+    border: none; }
+  .side-nav .accordion .accordion-button {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    background-color: transparent;
+    color: #8391a2; }
+    .side-nav .accordion .accordion-button:hover {
+      color: #bccee4; }
+      .side-nav .accordion .accordion-button:hover i:before {
+        color: #bccee4; }
+    .side-nav .accordion .accordion-button:focus {
+      box-shadow: none; }
+    .side-nav .accordion .accordion-button::after {
+      background-image: url("../images/svg-icon/acc-arrow.svg");
+      background-size: 10px;
+      background-position: center;
+      transform: rotate(90deg);
+      transform-origin: 50% 50%; }
+    .side-nav .accordion .accordion-button:not(.collapsed) {
+      color: #fff;
+      background-color: transparent;
+      box-shadow: none; }
+      .side-nav .accordion .accordion-button:not(.collapsed)::after {
+        transform: rotate(180deg) !important; }
+  .side-nav .accordion .accordion-button[aria-expanded="true"] i:before {
+    color: #fff; }
+  .side-nav .accordion .accordion-body {
+    padding: 0 1.25rem; }
+
+.setting-bar {
+  background-color: #fff;
+  box-shadow: 0 0 24px 0 #313a461a, 0 1px 0 0 #313a4614;
+  position: fixed;
+  transition: all .2s ease-out;
+  width: 280px;
+  z-index: 9999;
+  left: -290px;
+  top: 0;
+  bottom: 0; }
+
+.setting-bar.show {
+  left: 0 !important; }
+
+.overlay {
+  background-color: #37404a;
+  opacity: .1;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  z-index: 9998;
+  transition: all .2s ease-out; }
+
+.overlay.show {
+  display: block !important; }
 
 #page-container {
   background-color: #fafbfe; }

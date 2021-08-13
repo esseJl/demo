@@ -1,7 +1,9 @@
 @import "./sub-module/font-init.scss";
+@import "./sub-module/font-icon-init.scss";
 @import "./sub-module/site-header.scss";
 @import "./sub-module/site-footer.scss";
 @import "./sub-module/side-nav.scss";
+@import "./sub-module/setting-bar.scss";
 
 #page-container{
      background-color: #fafbfe;

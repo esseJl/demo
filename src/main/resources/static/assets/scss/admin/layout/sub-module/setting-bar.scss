@@ -1,0 +1,29 @@
+.setting-bar{
+    background-color: #fff;
+    box-shadow: 0 0 24px 0 #313a461a, 0 1px 0 0 #313a4614;
+    position: fixed;
+    transition: all .2s ease-out;
+    width: 280px;
+    z-index: 9999;
+    left: -290px;
+    top: 0;
+    bottom: 0;
+}
+.setting-bar.show{
+    left: 0 !important;
+}
+.overlay{
+    background-color: #37404a;
+    opacity: .1;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    z-index: 9998;
+    transition: all .2s ease-out;
+}
+.overlay.show{
+    display: block !important;
+}
