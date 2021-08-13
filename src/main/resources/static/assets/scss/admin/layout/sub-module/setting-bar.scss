@@ -1,20 +1,42 @@
-.setting-bar{
+.setting-bar {
     background-color: #fff;
     box-shadow: 0 0 24px 0 #313a461a, 0 1px 0 0 #313a4614;
     position: fixed;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
     width: 280px;
     z-index: 9999;
     left: -290px;
     top: 0;
     bottom: 0;
+    .bar-title {
+        background-color: #313a46;
+        padding: 27px 25px;
+        color: #fff;
+        .bar-headline {
+            font-size: 1rem;
+            line-height: 1;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+            background-color: #444e5a;
+            border-radius: 50%;
+            font-size: 0.55rem;
+            padding: 6px;
+            i {
+                &::before {
+                    color: #fff;
+                }
+            }
+        }
+    }
 }
-.setting-bar.show{
+.show-setting-bar .setting-bar {
     left: 0 !important;
 }
-.overlay{
+.overlay {
     background-color: #37404a;
-    opacity: .1;
+    opacity: 0.1;
     position: absolute;
     right: 0;
     left: 0;
@@ -22,8 +44,9 @@
     bottom: 0;
     display: none;
     z-index: 9998;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
 }
-.overlay.show{
+.show-overlay .overlay,
+.show-setting-bar .overlay {
     display: block !important;
 }

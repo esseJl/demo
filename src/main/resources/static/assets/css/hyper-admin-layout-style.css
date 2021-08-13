@@ -87,19 +87,79 @@
   align-items: center; }
 
 .search-form {
-  display: flex; }
+  display: flex;
+  align-items: center; }
+  .search-form .hamburger-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    margin-left: 24px; }
+    .search-form .hamburger-btn i:before {
+      color: #000; }
+  .search-form form {
+    margin: 0; }
 
 .toolbar-menu > ul {
-  display: flex; }
+  display: flex;
+  align-items: center; }
 
-.toolbar-menu .account-user-avatar img {
-  height: 32px;
-  width: 32px;
-  border-radius: 50%; }
+.toolbar-menu .account-user-avatar {
+  margin-left: 0.6rem; }
+  .toolbar-menu .account-user-avatar img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%; }
 
-.toolbar-menu .account-user-name,
+.toolbar-menu .account-user-name {
+  display: block;
+  font-weight: bold;
+  font-size: 0.85rem; }
+
 .toolbar-menu .account-position {
-  display: block; }
+  display: block;
+  font-size: 0.75rem; }
+
+.toolbar-menu .account-dropdown-item .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: #98a6ad;
+  text-decoration: none;
+  min-height: 70px; }
+
+.toolbar-menu .setting-btn-item .btn {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin-left: 5px; }
+
+.dropdown-menu-animated {
+  -webkit-animation-name: DropDownSlide;
+  animation-name: DropDownSlide;
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  /* position: absolute;
+    margin: 0;
+    z-index: 1000 */ }
+
+.dropdown-menu-animated.show {
+  top: 100% !important; }
+
+@-webkit-keyframes DropDownSlide {
+  100% {
+    transform: translateY(0); }
+  0% {
+    transform: translateY(10px); } }
+
+@keyframes DropDownSlide {
+  100% {
+    transform: translateY(0); }
+  0% {
+    transform: translateY(10px); } }
+
+@media (min-width: 768px) {
+  .dropdown-lg {
+    width: 320px; } }
 
 .site-footer {
   border-top: 1px solid #98a6ad33;
@@ -109,6 +169,9 @@
   left: 0;
   color: #98a6ad;
   right: 260px; }
+
+#site-content {
+  margin-right: 260px; }
 
 .side-nav {
   width: 260px;
@@ -140,7 +203,7 @@
     margin: 0;
     font-size: 0.8rem; }
   .side-nav .accordion a {
-    padding: 0.6rem 1.25rem;
+    padding: 0.45rem 26px;
     display: block;
     text-decoration: none;
     color: #8391a2;
@@ -150,7 +213,7 @@
   .side-nav .accordion i {
     margin-left: 0.7rem; }
     .side-nav .accordion i::before {
-      transition: color .15s ease-in-out; }
+      transition: color 0.15s ease-in-out; }
   .side-nav .accordion .accordion-item {
     background-color: transparent;
     border: none; }
@@ -182,23 +245,69 @@
   .side-nav .accordion .accordion-body {
     padding: 0 1.25rem; }
 
+.hide-side-nav .side-nav {
+  width: 70px; }
+  .hide-side-nav .side-nav .logo {
+    width: 70px; }
+    .hide-side-nav .side-nav .logo .logo-sm {
+      display: block; }
+    .hide-side-nav .side-nav .logo .logo-lg {
+      display: none; }
+  .hide-side-nav .side-nav .accordion .accordion-title {
+    display: none; }
+  .hide-side-nav .side-nav .accordion .accordion-button::after {
+    display: none; }
+  .hide-side-nav .side-nav .accordion .accordion-button > span {
+    position: absolute;
+    display: none;
+    right: 70px;
+    white-space: nowrap;
+    background: red;
+    color: blue;
+    padding: 1rem; }
+  .hide-side-nav .side-nav .accordion .accordion-button:hover > span {
+    display: block; }
+
+.hide-side-nav #site-content {
+  margin-right: 70px; }
+
+.hide-side-nav .site-header,
+.hide-side-nav .site-footer {
+  right: 70px; }
+
 .setting-bar {
   background-color: #fff;
   box-shadow: 0 0 24px 0 #313a461a, 0 1px 0 0 #313a4614;
   position: fixed;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
   width: 280px;
   z-index: 9999;
   left: -290px;
   top: 0;
   bottom: 0; }
+  .setting-bar .bar-title {
+    background-color: #313a46;
+    padding: 27px 25px;
+    color: #fff; }
+    .setting-bar .bar-title .bar-headline {
+      font-size: 1rem;
+      line-height: 1;
+      margin: 0; }
+    .setting-bar .bar-title a {
+      text-decoration: none;
+      background-color: #444e5a;
+      border-radius: 50%;
+      font-size: 0.55rem;
+      padding: 6px; }
+      .setting-bar .bar-title a i::before {
+        color: #fff; }
 
-.setting-bar.show {
+.show-setting-bar .setting-bar {
   left: 0 !important; }
 
 .overlay {
   background-color: #37404a;
-  opacity: .1;
+  opacity: 0.1;
   position: absolute;
   right: 0;
   left: 0;
@@ -206,9 +315,10 @@
   bottom: 0;
   display: none;
   z-index: 9998;
-  transition: all .2s ease-out; }
+  transition: all 0.2s ease-out; }
 
-.overlay.show {
+.show-overlay .overlay,
+.show-setting-bar .overlay {
   display: block !important; }
 
 #page-container {

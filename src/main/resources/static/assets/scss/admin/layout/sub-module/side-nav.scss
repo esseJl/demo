@@ -1,3 +1,6 @@
+#site-content {
+    margin-right: 260px;
+}
 .side-nav {
     width: 260px;
     background: #313a46;
@@ -33,7 +36,7 @@
             font-size: 0.8rem;
         }
         a {
-            padding: 0.6rem 1.25rem;
+            padding: 0.45rem 26px;
             display: block;
             text-decoration: none;
             color: #8391a2;
@@ -44,8 +47,8 @@
         }
         i {
             margin-left: 0.7rem;
-            &::before{
-                transition: color .15s ease-in-out;
+            &::before {
+                transition: color 0.15s ease-in-out;
             }
         }
         .accordion-item {
@@ -92,5 +95,50 @@
         .accordion-body {
             padding: 0 1.25rem;
         }
+    }
+}
+.hide-side-nav {
+    .side-nav {
+        width: 70px;
+        .logo {
+            width: 70px;
+            .logo-sm {
+                display: block;
+            }
+            .logo-lg {
+                display: none;
+            }
+        }
+        .accordion {
+            .accordion-title {
+                display: none;
+            }
+            .accordion-button {
+                &::after {
+                    display: none;
+                }
+                > span {
+                    position: absolute;
+                    display: none;
+                    right: 70px;
+                    white-space: nowrap;
+                    background: red;
+                    color: blue;
+                    padding: 1rem;
+                }
+                &:hover {
+                    > span {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    #site-content {
+        margin-right: 70px;
+    }
+    .site-header,
+    .site-footer {
+        right: 70px;
     }
 }
