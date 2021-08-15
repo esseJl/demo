@@ -11,6 +11,23 @@
     right: 0;
     box-shadow: 0 0 35px 0 #9aa1ab26;
     padding-top: 70px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px #343c49;
+        border-radius: 10px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
+    }
     .logo {
         background-color: #313a46;
         display: flex;
@@ -21,6 +38,7 @@
         z-index: 1;
         width: 260px;
         height: 70px;
+        overflow: hidden;
         .logo-sm {
             display: none;
         }
@@ -30,7 +48,7 @@
             margin-top: 1rem;
         }
         .accordion-title {
-            color: #8391a2;
+            color: #fff;
             padding: 0.7rem 1.25rem;
             margin: 0;
             font-size: 0.8rem;
@@ -54,6 +72,7 @@
         .accordion-item {
             background-color: transparent;
             border: none;
+            position: relative;
         }
 
         .accordion-button {
@@ -87,58 +106,119 @@
                 }
             }
         }
-        .accordion-button[aria-expanded="true"] {
-            i:before {
-                color: #fff;
-            }
-        }
+
         .accordion-body {
             padding: 0 1.25rem;
         }
     }
 }
-.hide-side-nav {
+body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] {
+    i:before {
+        color: #fff;
+    }
+}
+@media (max-width: 992px) {
     .side-nav {
-        width: 70px;
+        top: 70px;
         .logo {
-            width: 70px;
-            .logo-sm {
-                display: block;
-            }
-            .logo-lg {
-                display: none;
+            top: 70px;
+        }
+    }
+    .hide-side-nav {
+        .side-nav {
+            width: 0;
+
+            .logo {
+                width: 0;
             }
         }
-        .accordion {
-            .accordion-title {
-                display: none;
+    }
+}
+@media (min-width: 993px) {
+    .hide-side-nav {
+        .side-nav {
+            min-height: 100vh;
+            width: 70px;
+            position: absolute;
+            overflow-y: unset;
+            overflow-x: unset;
+            bottom: unset;
+            .logo {
+                width: 70px;
+                .logo-sm {
+                    display: block;
+                }
+                .logo-lg {
+                    display: none;
+                }
             }
-            .accordion-button {
-                &::after {
+            .accordion {
+                margin: 0;
+                .accordion-title {
                     display: none;
                 }
-                > span {
-                    position: absolute;
-                    display: none;
-                    right: 70px;
-                    white-space: nowrap;
-                    background: red;
-                    color: blue;
-                    padding: 1rem;
-                }
-                &:hover {
+                .accordion-button {
+                    padding: 14px 25px;
+                    &::after {
+                        display: none;
+                    }
                     > span {
-                        display: block;
+                        position: absolute;
+                        display: none;
+                        right: 70px;
+                        white-space: nowrap;
+                        background: #727cf5;
+                        color: #fff;
+                        padding: 14px 15px 14px 30px;
+                        width: 210px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        line-height: 15px;
+                    }
+                    &:hover {
+                        > span {
+                            display: block;
+                        }
                     }
                 }
+                .accordion-collapse {
+                    position: absolute;
+                    right: 70px;
+                    display: none;
+                    background-color: #313a46;
+                    width: 210px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    z-index: 1001;
+                }
+                .accordion-item {
+                    &:hover {
+                        .accordion-collapse {
+                            display: block;
+                        }
+                        .accordion-button {
+                            > span {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                a {
+                    padding: 0.55rem 0;
+                }
+                i {
+                    margin: 0 auto;
+                }
             }
         }
-    }
-    #site-content {
-        margin-right: 70px;
-    }
-    .site-header,
-    .site-footer {
-        right: 70px;
+        #site-content {
+            margin-right: 70px;
+        }
+        .site-header,
+        .site-footer {
+            right: 70px;
+        }
     }
 }

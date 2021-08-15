@@ -1,4 +1,4 @@
-.site-footer{
+.site-footer {
     border-top: 1px solid #98a6ad33;
     bottom: 0;
     padding: 19px 24px 20px;
@@ -6,4 +6,11 @@
     left: 0;
     color: #98a6ad;
     right: 260px;
+}
+@media (max-width: 992px) {
+    .hide-side-nav {
+        .site-footer {
+            right: 0;
+        }
+    }
 }
