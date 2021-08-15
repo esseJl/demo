@@ -133,6 +133,9 @@ body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] {
             }
         }
     }
+    #site-content {
+        margin-right: 0;
+    }
 }
 @media (min-width: 993px) {
     .hide-side-nav {

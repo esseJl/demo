@@ -5,6 +5,18 @@
 @import "./sub-module/side-nav.scss";
 @import "./sub-module/setting-bar.scss";
 
-#page-container{
+#page-container {
      background-color: #fafbfe;
+}
+#site-content {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     height: 100%;
+}
+.main-content {
+     flex-grow: 1;
+     > .body-container {
+          padding: 24px;
+     }
 }

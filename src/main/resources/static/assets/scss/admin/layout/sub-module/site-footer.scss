@@ -1,12 +1,21 @@
 .site-footer {
     border-top: 1px solid #98a6ad33;
-    bottom: 0;
     padding: 19px 24px 20px;
-    position: absolute;
-    left: 0;
     color: #98a6ad;
-    right: 260px;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    // right: 260px;
+    a{
+        text-decoration: none;
+        color: #98a6ad;
+        margin-right: 1.5rem;
+        &:hover{
+            color: #313a46;
+        }
+    }
 }
+
 @media (max-width: 992px) {
     .hide-side-nav {
         .site-footer {
