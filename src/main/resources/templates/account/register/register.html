@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <th:block th:insert="fragments/head::head"></th:block>
+
+    <title>Register</title>
+</head>
+<body>
+
+
+<h1 th:text="#{label.form.title}">form</h1>
+<form th:action="@{/register}" th:object="${user}" method="POST" enctype="utf8">
+    <div>
+        <label th:text="#{label.user.firstName}">first</label>
+        <input th:field="*{firstName}"/>
+        <p th:each="error: ${#fields.errors('firstName')}"
+           th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.lastName}">last</label>
+        <input th:field="*{lastName}"/>
+        <p th:each="error : ${#fields.errors('lastName')}"
+           th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.userName}">UserName</label>
+        <input th:field="*{userName}"/>
+        <p th:each="error: ${#fields.errors('userName')}"
+           th:text="${error}">Validation error</p>
+        <p th:if="${errors=='errors.user.with.username.exist'}" th:text="#{${errors}}"> userName Exist</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.email}">email</label>
+        <input type="email" th:field="*{email}"/>
+        <p th:each="error : ${#fields.errors('email')}"
+           th:text="${error}">Validation error</p>
+        <p th:if="${errors=='errors.email.already.exist'}" th:text="#{${errors}}"> Email Exist</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.password}">password</label>
+        <input type="password" th:field="*{password}"/>
+        <span th:each="error : ${#fields.errors('password')}">
+            <span th:each="message : ${error.split(',')}">
+                 <p class="error-message" th:text="${message}"></p>
+             </span>
+        </span>
+    </div>
+    <div>
+        <label th:text="#{label.user.confirmPass}">confirm</label>
+        <input type="password" th:field="*{matchingPassword}"/>
+        <p th:each="error : ${#fields.errors('matchingPassword')}"
+           th:text="#{${error}}">Validation error</p>
+    </div>
+    <br>
+    <div th:if="${captchaMessage!=null}" class="card-footer bg-info text-white">
+        <span class="alert alert-danger" th:text="#{${captchaMessage}}"></span>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-2">
+            <label>CAPTCHA</label>
+        </div>
+        <div class="col-4">
+            <img th:src="*{'data:realCaptcha/jpg;base64,'+ realCaptcha}"/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <label>ENTER CAPTCHA</label>
+        </div>
+        <div class="col-4">
+            <input type="hidden" th:field="*{hiddenCaptcha}"/>
+            <input type="text" th:field="*{captcha}" class="form-control"/>
+        </div>
+    </div>
+
+    <br>
+
+
+    <button type="submit" th:text="#{label.form.submit}">submit</button>
+</form>
+
+<a th:href="@{/login}" th:text="#{label.form.loginLink}">login</a>
+
+</body>
+</html>

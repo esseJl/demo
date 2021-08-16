@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl">
+<head>
+    <th:block th:insert="fragments/head::head"></th:block>
+</head>
+<body>
+<h1 th:text="#{message.verify.email}">reset</h1>
+<div th:if="${userSuccess}">
+    <p>verify email sent to :</p>
+    <p th:text="${userSuccess.getEmail()}"></p>
+</div>
+</body>
+</html>

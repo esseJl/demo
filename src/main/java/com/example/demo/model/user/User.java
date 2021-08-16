@@ -1,5 +1,6 @@
 package com.example.demo.model.user;
 
+import com.example.demo.annotation.valid.password.ValidPassword;
 import com.example.demo.model.role.Role;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,13 +40,20 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
-    @NotBlank
-    @Size(min = 4, max = 60)
-    @Column(length = 255)
+    @ValidPassword
     private String password;
 
     @Transient
     private String matchingPassword;
+
+    @Transient
+    private String captcha;
+
+    @Transient
+    private String hiddenCaptcha;
+
+    @Transient
+    private String realCaptcha;
 
     private boolean enable;
 
@@ -200,5 +208,29 @@ public class User implements Serializable {
 
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
+
+    public String getHiddenCaptcha() {
+        return hiddenCaptcha;
+    }
+
+    public void setHiddenCaptcha(String hiddenCaptcha) {
+        this.hiddenCaptcha = hiddenCaptcha;
+    }
+
+    public String getRealCaptcha() {
+        return realCaptcha;
+    }
+
+    public void setRealCaptcha(String realCaptcha) {
+        this.realCaptcha = realCaptcha;
     }
 }
