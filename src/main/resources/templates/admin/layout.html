@@ -355,60 +355,105 @@
                             <label for="exampleInputEmail1" class="form-label">عنوان مقاله</label>
                             <input type="text" class="form-control" id="exampleInputEmail1">
                         </div>
-                        <form action="#" id="get-data-form">
-                                <textarea id="editor">
-                                    <h1>محتوای مفید استایل</h1>
-                                    <p>css محتوای پیش فرض بسیار اساسی و غیرقابل تصور است تا به شما به عنوان توسعه دهنده اجازه دهد سبک های مورد نظر خود را برای ایجاد یک محیط نوشتاری خوب WYSIWYG ادغام کنید.</p>
-                                    <p>با این وجود ، در اینجا برخی از تکنیک هایی است که اغلب خودمان به کار می گیریم و باعث بهبود تجربه ویرایش در TinyMCE می شود</p>
-                                    <p><em>برای مشاهده css واقعی مورد استفاده ، کد منبع را بررسی کنید</em></p>
-                                    <h2>قابلیت کلیک ساعت را افزایش دهید</h2>
-                                    <p>از آنجا که اغلب فقط یک خط خاکستری 1 پیکسل است ، انتخاب و دستکاری برای کاربر بسیار دشوار است. با استفاده از <code>::after</code> ما می توانیم یک ناحیه کلیک نامرئی بزرگتر ایجاد کنیم که قابلیت انتخاب پذیری را تا حد زیادی بهبود می بخشد.</p>
-                                    <hr />
-                                    <h2>پاراگراف ها در سلول های جدول</h2>
-                                    <p>یک سلول جدول به طور اولیه شامل هیچ عنصر دیگری نیست که محتوا را پیچیده باشد ، اما به محض وارد کردن enter ، یک پاراگراف در اطراف متن داخل سلول پیچیده می شود. این پاراگراف شامل حاشیه بالا و پایین است که باعث می شود سلول بیش از حد پر شود. در اینجا نحوه جلوگیری از آن است</p>
-                                    <table style="border-collapse: collapse; width: 100%;" border="1">
-                                        <tbody>
-                                            <tr style="height: 22px;">
-                                                <td style="width: 50%; height: 22px; vertical-align: top;">Project X</td>
-                                                <td style="width: 50%; height: 22px; vertical-align: top;">
-                                                    <p>Not finished</p>
-                                                    <p>Need more info</p>
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 22px;">
-                                                <td style="width: 50%; height: 22px; vertical-align: top;">Project Y</td>
-                                                <td style="width: 50%; height: 22px; vertical-align: top;">Completed</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <h2>برای عناصر قابل انتخاب به جای طرح کلی از سایه جعبه استفاده کنید</h2>
-                                    <p>به طور پیش فرض ، عناصر قابل انتخاب مانند تصاویر ، جداول و عناصر غیرقابل ویرایش با استفاده از الگوی رنگ آبی روشن می شود <code>outline</code> property. On drawback of using <code>outline</code> is that the outline does not follow rounded borders.
-                                    <p><img src="../../static/assets/images/avatar-5.jpg" width="390" height="260" /></p>
-                                </textarea>
-                            <textarea id="myTextarea"></textarea>
-                            <button type="button"
-                                    onclick='console.log(tinymce.get("myTextarea").getContent());'>Save
-                            </button>
-                        </form>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">خلاصه مقاله</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="editor" class="form-label">محتوا مقاله</label>
+                            <textarea id="editor">
+                                <h1>محتوای مفید استایل</h1>
+                                <p>css محتوای پیش فرض بسیار اساسی و غیرقابل تصور است تا به شما به عنوان توسعه دهنده اجازه دهد سبک های مورد نظر خود را برای ایجاد یک محیط نوشتاری خوب WYSIWYG ادغام کنید.</p>
+                                <p>با این وجود ، در اینجا برخی از تکنیک هایی است که اغلب خودمان به کار می گیریم و باعث بهبود تجربه ویرایش در TinyMCE می شود</p>
+                                <p><em>برای مشاهده css واقعی مورد استفاده ، کد منبع را بررسی کنید</em></p>
+                                <h2>قابلیت کلیک ساعت را افزایش دهید</h2>
+                                <p>از آنجا که اغلب فقط یک خط خاکستری 1 پیکسل است ، انتخاب و دستکاری برای کاربر بسیار دشوار است. با استفاده از <code>::after</code> ما می توانیم یک ناحیه کلیک نامرئی بزرگتر ایجاد کنیم که قابلیت انتخاب پذیری را تا حد زیادی بهبود می بخشد.</p>
+                                <hr />
+                                <h2>پاراگراف ها در سلول های جدول</h2>
+                                <p>یک سلول جدول به طور اولیه شامل هیچ عنصر دیگری نیست که محتوا را پیچیده باشد ، اما به محض وارد کردن enter ، یک پاراگراف در اطراف متن داخل سلول پیچیده می شود. این پاراگراف شامل حاشیه بالا و پایین است که باعث می شود سلول بیش از حد پر شود. در اینجا نحوه جلوگیری از آن است</p>
+                                <table style="border-collapse: collapse; width: 100%;" border="1">
+                                    <tbody>
+                                        <tr style="height: 22px;">
+                                            <td style="width: 50%; height: 22px; vertical-align: top;">Project X</td>
+                                            <td style="width: 50%; height: 22px; vertical-align: top;">
+                                                <p>Not finished</p>
+                                                <p>Need more info</p>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 22px;">
+                                            <td style="width: 50%; height: 22px; vertical-align: top;">Project Y</td>
+                                            <td style="width: 50%; height: 22px; vertical-align: top;">Completed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h2>برای عناصر قابل انتخاب به جای طرح کلی از سایه جعبه استفاده کنید</h2>
+                                <p>به طور پیش فرض ، عناصر قابل انتخاب مانند تصاویر ، جداول و عناصر غیرقابل ویرایش با استفاده از الگوی رنگ آبی روشن می شود <code>outline</code> property. On drawback of using <code>outline</code> is that the outline does not follow rounded borders.
+                                <p><img src="../../static/assets/images/avatar-5.jpg" width="390" height="260" /></p>
+                            </textarea>
+                        <!-- <textarea id="myTextarea"></textarea>
+                        <button type="button"
+                                onclick='console.log(tinymce.get("myTextarea").getContent());'>Save
+                        </button> -->
                         </div>
+                
                     </div>
-                    <aside class="post-submition col-md-4">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
-                            <input type="text" class="form-control pub-date" id="exampleInputEmail2">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
-                            <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
-                                <option value="AL">جلالی</option>
-                                <option value="WY">غزالی</option>
-                            </select>
-                        </div>
-                        <label for="avatar">Choose a profile picture:</label>
-                        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                    <aside class="col-md-4">
+
+
+                        <div class="card  mb-3">
+                            <h5 class="card-header">انتشار</h5>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">Special title treatment</h5> -->
+                              <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
+                                <input type="text" class="form-control pub-date" id="exampleInputEmail2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
+                                <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
+                                    <option value="AL">جلالی</option>
+                                    <option value="WY">غزالی</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary me-auto" type="button">انتشار</button>
+                            </div>
+                          </div>
+                        <div class="card mb-3">
+                            <h5 class="card-header">عکس شاخص</h5>
+                            <div class="card-body">
+                                <label for="avatar">Choose a profile picture:</label>
+                                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+               
+                            </div>
+                          </div>
+                        <div class="card mb-3">
+                            <h5 class="card-header">چکیده مقاله</h5>
+                            <div class="card-body">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                          </div>
+                        <div class="card mb-3">
+                            <h5 class="card-header">دسته بندی</h5>
+                            <div class="card-body">
+                            </div>
+                          </div>
+                        <div class="card mb-3">
+                            <h5 class="card-header">بر چسب ها</h5>
+                            <div class="card-body">
+                            </div>
+                          </div>
+                        <div class="card mb-3">
+                            <h5 class="card-header">پیوند یکتا</h5>
+                            <div class="card-body">
+                            </div>
+                          </div>
+                        <div class="card">
+                            <h5 class="card-header">گفتگو</h5>
+                            <div class="card-body">
+                            </div>
+                          </div>
+
+
+                        
+                        
                     </aside>
                 </section>
             </div>
