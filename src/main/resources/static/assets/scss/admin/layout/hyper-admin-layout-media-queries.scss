@@ -28,10 +28,25 @@
         animation-fill-mode: both;
         box-shadow: 0 3px 10px -10px #000000;
     }
-    .col-span .search-form .dropdown-menu{
+    .show-search-form .col-span .search-form {
+        display: block !important;
+    }
+    .show-search-form .main-content{
+        margin-top: 55px;
+    }
+    .col-span .search-form .dropdown-menu {
         left: 12px;
         right: 12px;
         width: unset;
+    }
+    .toolbar-menu .search-btn-item {
+        display: block;
+    }
+    .site-footer{
+        padding: 12px;
+    }
+    .main-content > .body-container{
+        padding: 24px 12px;
     }
 }
 @media (max-width: 357px) {

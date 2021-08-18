@@ -5,22 +5,23 @@
   display: block;
   width: 100% !important; }
 
-#blog-content > aside .card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 0.9rem; }
-  #blog-content > aside .card-header::after {
-    content: "";
-    display: block;
-    border-top: 0.3em solid;
-    border-left: 0.3em solid transparent;
-    border-bottom: 0;
-    border-right: 0.3em solid transparent; }
-
-#blog-content > aside .form-label {
+#blog-content > aside {
   font-size: 0.85rem; }
+  #blog-content > aside .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem; }
+    #blog-content > aside .card-header::after {
+      content: "";
+      display: block;
+      border-top: 0.3em solid;
+      border-left: 0.3em solid transparent;
+      border-bottom: 0;
+      border-right: 0.3em solid transparent; }
+  #blog-content > aside .card-header[aria-expanded="false"]::after {
+    transform: rotate(180deg); }
 
-#blog-content > aside .card-header[aria-expanded="false"]::after {
-  transform: rotate(180deg); }
+#blog-content > div .form-label {
+  font-weight: bold; }

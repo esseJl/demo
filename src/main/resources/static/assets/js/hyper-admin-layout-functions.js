@@ -57,6 +57,9 @@ var LayoutFunctions = /** @class */ (function () {
         document.querySelector('.setting-bar .bar-title a').addEventListener("click", function () {
             document.body.classList.remove('show-setting-bar');
         });
+        document.querySelector('.toolbar-menu .search-btn-item .btn').addEventListener("click", function () {
+            document.body.classList.toggle('show-search-form');
+        });
         document.querySelector('.search-form input').addEventListener("blur", function () {
             setTimeout(function () {
                 _this.searchSugestion.classList.remove('show');

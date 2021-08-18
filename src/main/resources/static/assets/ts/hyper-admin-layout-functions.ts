@@ -61,6 +61,9 @@ class LayoutFunctions {
         document.querySelector('.setting-bar .bar-title a')!.addEventListener("click", () => {
             document.body.classList.remove('show-setting-bar');
         });
+        document.querySelector('.toolbar-menu .search-btn-item .btn')!.addEventListener("click", () => {
+            document.body.classList.toggle('show-search-form');
+        });
         document.querySelector('.search-form input')!.addEventListener("blur", () => {
             setTimeout(() => {
                 this.searchSugestion.classList.remove('show');

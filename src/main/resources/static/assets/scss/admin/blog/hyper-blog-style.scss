@@ -7,7 +7,8 @@
 }
 #blog-content {
      > aside {
-          .card-header{
+          font-size: 0.85rem;
+          .card-header {
                display: flex;
                align-items: center;
                justify-content: space-between;
@@ -22,13 +23,18 @@
                     border-right: 0.3em solid transparent;
                }
           }
-          .form-label{
-               font-size: 0.85rem;
-          }
-          .card-header[aria-expanded="false"]{
+          // .form-label{
+          //      font-size: 0.85rem;
+          // }
+          .card-header[aria-expanded="false"] {
                &::after {
-                   transform: rotate(180deg);
+                    transform: rotate(180deg);
                }
+          }
+     }
+     > div {
+          .form-label {
+               font-weight: bold;
           }
      }
 }
