@@ -5,7 +5,22 @@
   display: block;
   width: 100% !important; }
 
-.post-submition {
-  border: 1px solid #b7b7b7;
-  border-radius: 5px;
-  padding: 1rem; }
+#blog-content > aside .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 0.9rem; }
+  #blog-content > aside .card-header::after {
+    content: "";
+    display: block;
+    border-top: 0.3em solid;
+    border-left: 0.3em solid transparent;
+    border-bottom: 0;
+    border-right: 0.3em solid transparent; }
+
+#blog-content > aside .form-label {
+  font-size: 0.85rem; }
+
+#blog-content > aside .card-header[aria-expanded="false"]::after {
+  transform: rotate(180deg); }

@@ -4,7 +4,7 @@
 .side-nav {
     width: 260px;
     background: #313a46;
-    z-index: 10;
+    z-index: 1000;
     position: fixed;
     bottom: 0;
     top: 0;
@@ -145,7 +145,7 @@ body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] {
             position: absolute;
             overflow-y: unset;
             overflow-x: unset;
-            bottom: unset;
+            // bottom: unset;
             .logo {
                 width: 70px;
                 .logo-sm {

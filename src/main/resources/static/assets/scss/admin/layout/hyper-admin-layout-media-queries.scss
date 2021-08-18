@@ -1,0 +1,38 @@
+@media (max-width: 1600px) {
+}
+@media (max-width: 1200px) {
+}
+@media (min-width: 993px) {
+}
+@media (max-width: 992px) {
+}
+@media (max-width: 768px) {
+    .site-header {
+        padding: 0 12px;
+    }
+}
+@media (max-width: 576px) {
+    .site-header {
+        position: relative;
+    }
+    .col-span .search-form {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 2px 12px 12px 12px;
+        background: #fff;
+        animation-name: DropDownSlide;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        box-shadow: 0 3px 10px -10px #000000;
+    }
+    .col-span .search-form .dropdown-menu{
+        left: 12px;
+        right: 12px;
+        width: unset;
+    }
+}
+@media (max-width: 357px) {
+}

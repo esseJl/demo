@@ -77,14 +77,15 @@
   background-color: #fff;
   box-shadow: 0 0 35px 0 #9aa1ab26;
   min-height: 70px;
-  z-index: 1001;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   align-items: center; }
 
 .col-span {
   display: flex;
-  align-items: center; }
+  align-items: center;
+  margin-left: 5px; }
   .col-span .hamburger-btn {
     font-size: 1.2rem;
     padding: 0.5rem;
@@ -184,7 +185,7 @@
 .side-nav {
   width: 260px;
   background: #313a46;
-  z-index: 10;
+  z-index: 1000;
   position: fixed;
   bottom: 0;
   top: 0;
@@ -287,8 +288,7 @@ body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] i:bef
     width: 70px;
     position: absolute;
     overflow-y: unset;
-    overflow-x: unset;
-    bottom: unset; }
+    overflow-x: unset; }
     .hide-side-nav .side-nav .logo {
       width: 70px; }
       .hide-side-nav .side-nav .logo .logo-sm {
@@ -389,7 +389,10 @@ body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] i:bef
   display: block !important; }
 
 #page-container {
-  background-color: #fafbfe; }
+  background-color: #fafbfe;
+  position: relative; }
+  #page-container i {
+    vertical-align: middle; }
 
 #site-content {
   display: flex;
@@ -401,3 +404,30 @@ body:not(.hide-side-nav) .side-nav .accordion-button[aria-expanded="true"] i:bef
   flex-grow: 1; }
   .main-content > .body-container {
     padding: 24px; }
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0 12px; } }
+
+@media (max-width: 576px) {
+  .site-header {
+    position: relative; }
+  .col-span .search-form {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 2px 12px 12px 12px;
+    background: #fff;
+    -webkit-animation-name: DropDownSlide;
+    animation-name: DropDownSlide;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    box-shadow: 0 3px 10px -10px #000000; }
+  .col-span .search-form .dropdown-menu {
+    left: 12px;
+    right: 12px;
+    width: unset; } }
