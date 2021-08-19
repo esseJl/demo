@@ -62,4 +62,12 @@ public class UserPrincipal implements UserDetails, Serializable {
     public boolean isEnabled() {
         return this.user.isEnable();
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
