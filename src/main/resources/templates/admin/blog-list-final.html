@@ -17,8 +17,7 @@
     <!-- blog list -->
     <link rel="stylesheet" href="../../static/assets/css/hyper-blog-list-style.css">
     <!-- wp css -->
-    <link rel="stylesheet" href="../../static/assets/css/common.css">
-    <link rel="stylesheet" href="../../static/assets/css/table-list.css">
+    <link rel="stylesheet" href="../../static/assets/css/shayan.css">
 
 </head>
 <!-- settings will config here -->
@@ -355,182 +354,152 @@
             <main class="main-content" role="main">
                 <div class="body-container">
                     <section id="blog-list-content">
-                        <div class="tablenav-pages">
-                            <span class="displaying-num">
-                                237 مورد
-                            </span>
-                            <span class="pagination-links">
-                                <span class="tablenav-pages-navspan" aria-hidden="true">«</span>
-                                <span class="tablenav-pages-navspan" aria-hidden="true">‹</span>
-                                <span class="paging-input">
-                                    <label for="current-page-selector" class="screen-reader-text">
-                                        برگه‌ی کنونی
-                                    </label>
-                                    <input class="current-page" id="current-page-selector" type="text" name="paged" value="1" size="2" aria-describedby="table-paging">
-                                        <span class="tablenav-paging-text">
-                                             از 
-                                            <span class="total-pages">
-                                                12
-                                            </span>
-                                        </span>
-                                    </span>
-                                <a class="next-page" href="https://layon.ir/wp-admin/edit.php?paged=2">
-                                    <span class="screen-reader-text">
-                                        برگه بعد
-                                    </span>
-                                    <span aria-hidden="true">›</span>
-                                </a>
-                                <a class="last-page" href="https://layon.ir/wp-admin/edit.php?paged=12">
-                                    <span class="screen-reader-text">
-                                        برگه آخر
-                                    </span>
-                                    <span aria-hidden="true">»</span>
-                                </a>
-                            </span>
-                        </div>
-                        <table class="wp-list-table widefat fixed striped table-view-list posts">
+                   
+                        <table>
                             <thead>
                                 <tr>
-                                    <td id="cb" class="manage-column column-cb check-column">
-                                        <label class="screen-reader-text" for="cb-select-all-1">
-                                            انتخاب همه
-                                        </label>
-                                        <input id="cb-select-all-1" type="checkbox">
+                                    <td class="check-column">
+                                        <input type="checkbox">
                                     </td>
-                                    <th scope="col" id="title"
-                                        class="manage-column column-title column-primary sortable desc">
+                                    <th scope="col" id="title" class="sortable desc">
                                         <a href="#">
                                             <span>عنوان</span>
-                                            <span class="sorting-indicator"></span>
                                         </a>
                                     </th>
-                                    <th scope="col" id="author" class="manage-column column-author">نویسنده</th>
-                                    <th scope="col" id="categories" class="manage-column column-categories">دسته‌ها</th>
-                                    <th scope="col" id="tags" class="manage-column column-tags">برچسب‌ها</th>
-                                    <th scope="col" id="comments"
-                                        class="manage-column column-comments num sortable desc">
+                                    <th scope="col" id="author">نویسنده</th>
+                                    <th scope="col" id="categories">دسته‌ها</th>
+                                    <th scope="col" id="tags">برچسب‌ها</th>
+                                    <th scope="col" id="comments" class="sortable desc">
                                         <a href="#">
                                             <span>
-                                                <span class="vers comment-grey-bubble" title="دیدگاه‌ها">
-                                                    <span class="screen-reader-text">دیدگاه‌ها</span>
-                                                </span>
+                                                دیدگاه‌ها
                                             </span>
-                                            <span class="sorting-indicator"></span>
                                         </a>
                                     </th>
-                                    <th scope="col" id="date" class="manage-column column-date sortable asc">
+                                    <th scope="col" id="date" class="sortable asc">
                                         <a href="#">
                                             <span>تاریخ</span>
-                                            <span class="sorting-indicator"></span>
                                         </a>
                                     </th>
                                 </tr>
                             </thead>
 
-                            <tbody id="the-list">
-                                <tr id="post-11"
-                                    class="iedit author-self level-0 post-11 type-post status-draft format-standard hentry category-uncategorized">
+                            <tbody>
+                                <tr>
                                     <th scope="row" class="check-column">
-                                        <input id="cb-select-11" type="checkbox" name="post[]" value="11">
+                                        <input type="checkbox">
                                     </th>
-                                    <td class="title column-title has-row-actions column-primary page-title" data-colname="عنوان">
+                                    <td>
                                         <strong>
                                             <a class="row-title" href="#">dv</a>
                                         </strong>
                                         <div class="row-actions">
                                             <span class="edit">
-                                                <a href="#" aria-label="ویرایش “dv”">ویرایش</a> |
-                                            </span><span class="trash"><a href="#" class="submitdelete"
-                                                    aria-label="انتقال “dv” به زباله‌دان">زباله‌دان</a> | </span><span
-                                                class="view"><a href="#" rel="bookmark"
-                                                    aria-label="پیش‌نمایش “dv”">پیش‌نمایش</a></span></div><button
-                                            type="button" class="toggle-row"><span class="screen-reader-text">نمایش
-                                                جزئیات بیشتر</span></button>
+                                                <a href="#">ویرایش</a> |
+                                            </span>
+                                            <span class="trash">
+                                                <a href="#">زباله‌دان</a> |
+                                            </span>
+                                            <span class="view">
+                                                <a href="#" rel="bookmark">پیش‌نمایش</a>
+                                            </span>
+                                        </div>
                                     </td>
-                                    <td class="author column-author" data-colname="نویسنده">
+                                    <td>
                                         <a href="#">admin</a>
                                     </td>
-                                    <td class="categories column-categories" data-colname="دسته‌ها">
+                                    <td>
                                         <a href="#">Uncategorized</a>
                                     </td>
-                                    <td class="tags column-tags" data-colname="برچسب‌ها">
-                                        <span aria-hidden="true">—</span>
-                                        <span class="screen-reader-text">
-                                            بدون برچسب
+                                    <td>
+                                        <span>—</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            0
                                         </span>
                                     </td>
-                                    <td class="comments column-comments" data-colname="دیدگاه‌ها">
-                                        <div class="post-com-count-wrapper">
-                                            <span aria-hidden="true">—</span>
-                                            <span class="screen-reader-text">
-                                                بدون دیدگاه
-                                            </span>
-                                            <span
-                                                class="post-com-count post-com-count-pending post-com-count-no-pending">
-                                                <span class="comment-count comment-count-no-pending" aria-hidden="true">
-                                                    0
-                                                </span>
-                                                <span class="screen-reader-text">
-                                                    بدون دیدگاه
-                                                </span>
-                                            </span>
-                                        </div>
+                                    <td>
+                                        آخرین ویرایش<br>1400/05/26 در 6:06 ب.ظ
                                     </td>
-                                    <td class="date column-date" data-colname="تاریخ">آخرین ویرایش<br>1400/05/26 در 6:06
-                                        ب.ظ</td>
                                 </tr>
-                                <tr id="post-1"
-                                    class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
-                                    <th scope="row" class="check-column"> <label class="screen-reader-text"
-                                            for="cb-select-1">
-                                            انتخاب Hello world! </label>
-                                        <input id="cb-select-1" type="checkbox" name="post[]" value="1">
-                                        <div class="locked-indicator">
-                                            <span class="locked-indicator-icon" aria-hidden="true"></span>
-                                            <span class="screen-reader-text">
-                                                “Hello world!” قفل است </span>
-                                        </div>
+                                <tr>
+                                    <th scope="row" class="check-column">
+                                        <input type="checkbox">
                                     </th>
-                                    <td class="title column-title has-row-actions column-primary page-title"
-                                        data-colname="عنوان">
-                                        <div class="locked-info"><span class="locked-avatar"></span> <span
-                                                class="locked-text"></span></div>
-                                        <strong><a class="row-title" href="#" aria-label="“Hello world!” (ویرایش)">Hello
-                                                world!</a></strong>
-
-
-                                        <div class="row-actions"><span class="edit"><a href="#"
-                                                    aria-label="ویرایش “Hello world!”">ویرایش</a> |
-                                            </span><span class="trash"><a href="#" class="submitdelete"
-                                                    aria-label="انتقال “Hello world!” به زباله‌دان">زباله‌دان</a> |
-                                            </span><span class="view"><a href="#" rel="bookmark"
-                                                    aria-label="نمایش “Hello world!”">نمایش</a></span></div><button
-                                            type="button" class="toggle-row"><span class="screen-reader-text">نمایش
-                                                جزئیات بیشتر</span></button>
-                                    </td>
-                                    <td class="author column-author" data-colname="نویسنده"><a href="#">admin</a></td>
-                                    <td class="categories column-categories" data-colname="دسته‌ها"><a
-                                            href="#">Uncategorized</a></td>
-                                    <td class="tags column-tags" data-colname="برچسب‌ها"><span
-                                            aria-hidden="true">—</span><span class="screen-reader-text">بدون
-                                            برچسب</span></td>
-                                    <td class="comments column-comments" data-colname="دیدگاه‌ها">
-                                        <div class="post-com-count-wrapper">
-                                            <a href="#" class="post-com-count post-com-count-approved"><span
-                                                    class="comment-count-approved" aria-hidden="true">1</span><span
-                                                    class="screen-reader-text">1 دیدگاه</span></a><span
-                                                class="post-com-count post-com-count-pending post-com-count-no-pending"><span
-                                                    class="comment-count comment-count-no-pending"
-                                                    aria-hidden="true">0</span><span class="screen-reader-text">دیدگاهی
-                                                    در انتظار بررسی نیست</span></span>
+                                    <td>
+                                        <strong>
+                                            <a class="row-title" href="#">dv</a>
+                                        </strong>
+                                        <div class="row-actions">
+                                            <span class="edit">
+                                                <a href="#">ویرایش</a> |
+                                            </span>
+                                            <span class="trash">
+                                                <a href="#">زباله‌دان</a> |
+                                            </span>
+                                            <span class="view">
+                                                <a href="#" rel="bookmark">پیش‌نمایش</a>
+                                            </span>
                                         </div>
                                     </td>
-                                    <td class="date column-date" data-colname="تاریخ">منتشرشده<br>1400/03/16 در 8:45 ق.ظ
+                                    <td>
+                                        <a href="#">admin</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">Uncategorized</a>
+                                    </td>
+                                    <td>
+                                        <span>—</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            0
+                                        </span>
+                                    </td>
+                                    <td>
+                                        آخرین ویرایش<br>1400/05/26 در 6:06 ب.ظ
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="check-column">
+                                        <input type="checkbox">
+                                    </th>
+                                    <td>
+                                        <strong>
+                                            <a class="row-title" href="#">dv</a>
+                                        </strong>
+                                        <div class="row-actions">
+                                            <span class="edit">
+                                                <a href="#">ویرایش</a> |
+                                            </span>
+                                            <span class="trash">
+                                                <a href="#">زباله‌دان</a> |
+                                            </span>
+                                            <span class="view">
+                                                <a href="#" rel="bookmark">پیش‌نمایش</a>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">admin</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">Uncategorized</a>
+                                    </td>
+                                    <td>
+                                        <span>—</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            0
+                                        </span>
+                                    </td>
+                                    <td>
+                                        آخرین ویرایش<br>1400/05/26 در 6:06 ب.ظ
                                     </td>
                                 </tr>
                             </tbody>
-
-
                         </table>
                     </section>
                 </div>
