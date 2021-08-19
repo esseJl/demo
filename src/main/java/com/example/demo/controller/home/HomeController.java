@@ -19,5 +19,10 @@ public class HomeController {
         return "admin/blog-list";
     }
 
+    @RequestMapping(value = "/post", method = RequestMethod.GET)
+    public String newPost() {
+        return "admin/post-page";
+    }
+
 
 }

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{admin/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Post</title>
+
+    <title>Create New Post</title>
+
 </head>
 <body>
-<div>
 
-    <div class="col-md-8">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">عنوان مقاله</label>
-            <input type="text" class="form-control" id="exampleInputEmail1">
-        </div>
-        <div class="mb-3">
-            <label for="editor" class="form-label">محتوا مقاله</label>
-            <textarea id="editor">
+<main class="main-content" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">عنوان مقاله</label>
+                <input type="text" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+                <label for="editor" class="form-label">محتوا مقاله</label>
+                <textarea id="editor">
                                 <h1>محتوای مفید استایل</h1>
                                 <p>css محتوای پیش فرض بسیار اساسی و غیرقابل تصور است تا به شما به عنوان توسعه دهنده اجازه دهد سبک های مورد نظر خود را برای ایجاد یک محیط نوشتاری خوب WYSIWYG ادغام کنید.</p>
                                 <p>با این وجود ، در اینجا برخی از تکنیک هایی است که اغلب خودمان به کار می گیریم و باعث بهبود تجربه ویرایش در TinyMCE می شود</p>
@@ -44,111 +49,113 @@
                                 <p><img src="../../static/assets/images/avatar-5.jpg" width="390" height="260" /></p>
                             </textarea>
 
-        </div>
+            </div>
 
+        </div>
+        <aside class="col-md-4">
+
+            <div class="card  mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#publishcard"
+                     aria-expanded="true"
+                     aria-controls="publishcard">انتشار
+                </div>
+                <div class="collapse show" id="publishcard">
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Special title treatment</h5> -->
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
+                            <input type="text" class="form-control form-control-sm pub-date"
+                                   id="exampleInputEmail2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
+                            <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
+                                <option value="AL">جلالی</option>
+                                <option value="WY">غزالی</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-sm btn-primary d-block ms-auto" type="button"
+                                onclick='console.log(tinymce.get("editor").getContent());'>انتشار
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#choosecard"
+                     aria-expanded="true"
+                     aria-controls="choosecard">عکس شاخص
+                </div>
+                <div class="collapse show" id="choosecard">
+                    <div class="card-body text-center">
+                        <a href="#">عکس شاخص را انتخاب کنید</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#excerptcard"
+                     aria-expanded="true"
+                     aria-controls="excerptcard">چکیده مقاله
+                </div>
+                <div class="collapse show" id="excerptcard">
+                    <div class="card-body">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#catcard"
+                     aria-expanded="true"
+                     aria-controls="catcard">دسته بندی
+                </div>
+                <div class="collapse show" id="catcard">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#tagcard"
+                     aria-expanded="true"
+                     aria-controls="tagcard">بر چسب ها
+                </div>
+                <div class="collapse show" id="tagcard">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#slugcard"
+                     aria-expanded="true"
+                     aria-controls="slugcard">پیوند یکتا
+                </div>
+                <div class="collapse show" id="slugcard">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#commentcard"
+                     aria-expanded="true"
+                     aria-controls="commentcard">گفتگو
+                </div>
+                <div class="collapse show" id="commentcard">
+                    <div class="card-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                   checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                پذیرفتن دیدگاه
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
     </div>
-    <aside class="col-md-4">
+</main>
 
-        <div class="card  mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#publishcard"
-                 aria-expanded="true"
-                 aria-controls="publishcard">انتشار
-            </div>
-            <div class="collapse show" id="publishcard">
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Special title treatment</h5> -->
-                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
-                        <input type="text" class="form-control form-control-sm pub-date"
-                               id="exampleInputEmail2">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
-                        <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
-                            <option value="AL">جلالی</option>
-                            <option value="WY">غزالی</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-sm btn-primary d-block ms-auto" type="button"
-                            onclick='console.log(tinymce.get("editor").getContent());'>انتشار
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#choosecard"
-                 aria-expanded="true"
-                 aria-controls="choosecard">عکس شاخص
-            </div>
-            <div class="collapse show" id="choosecard">
-                <div class="card-body text-center">
-                    <a href="#">عکس شاخص را انتخاب کنید</a>
-
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#excerptcard"
-                 aria-expanded="true"
-                 aria-controls="excerptcard">چکیده مقاله
-            </div>
-            <div class="collapse show" id="excerptcard">
-                <div class="card-body">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#catcard"
-                 aria-expanded="true"
-                 aria-controls="catcard">دسته بندی
-            </div>
-            <div class="collapse show" id="catcard">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#tagcard"
-                 aria-expanded="true"
-                 aria-controls="tagcard">بر چسب ها
-            </div>
-            <div class="collapse show" id="tagcard">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#slugcard"
-                 aria-expanded="true"
-                 aria-controls="slugcard">پیوند یکتا
-            </div>
-            <div class="collapse show" id="slugcard">
-                <div class="card-body">
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#commentcard"
-                 aria-expanded="true"
-                 aria-controls="commentcard">گفتگو
-            </div>
-            <div class="collapse show" id="commentcard">
-                <div class="card-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                               checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                            پذیرفتن دیدگاه
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </aside>
-</div>
 </body>
 </html>
