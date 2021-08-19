@@ -1,6 +1,6 @@
 package com.example.demo.repository.category;
 
-import com.example.demo.model.category.ProductCategory;
+import com.example.demo.model.category.cat4product.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

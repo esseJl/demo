@@ -1,6 +1,6 @@
 package com.example.demo.controller.category;
 
-import com.example.demo.model.category.ProductCategory;
+import com.example.demo.model.category.cat4product.ProductCategory;
 import com.example.demo.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/category")

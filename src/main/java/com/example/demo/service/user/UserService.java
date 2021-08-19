@@ -7,6 +7,7 @@ import com.example.demo.model.user.token.email.verification.register.listener.IU
 import com.example.demo.model.user.token.email.verification.token.EmailVerificationToken;
 import com.example.demo.model.user.token.reset.password.complete.event.OnResetPasswordEvent;
 import com.example.demo.model.user.token.reset.password.listener.IUserResetPassword;
+import com.example.demo.repository.role.RoleRepository;
 import com.example.demo.repository.user.UserRepository;
 import com.example.demo.repository.token.email.verification.EmailVerificationRepository;
 import com.example.demo.service.token.reset.password.PasswordResetService;
@@ -27,16 +28,21 @@ public class UserService implements IUserService, IUserResetPassword {
     private PasswordResetService passwordResetService;
     private PasswordEncoder encoder;
     private ApplicationEventPublisher eventPublisher;
+    //TODO imp service for RoleRepository
+    private RoleRepository roleRepository;
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder encoder,
                        EmailVerificationRepository emailTokenRepository,
-                       ApplicationEventPublisher eventPublisher, PasswordResetService passwordResetService) {
+                       ApplicationEventPublisher eventPublisher,
+                       PasswordResetService passwordResetService,
+                       RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.emailTokenRepository = emailTokenRepository;
         this.encoder = encoder;
         this.eventPublisher = eventPublisher;
         this.passwordResetService = passwordResetService;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -115,8 +121,17 @@ public class UserService implements IUserService, IUserResetPassword {
         User newUser = new User();
 
         Role role = new Role("USER");
+        Optional<Role> one = roleRepository.findByName(role.getName());
         List<Role> roles = new ArrayList<>();
-        roles.add(role);
+
+        System.out.println(one.get().getName());
+        System.out.println(role.getName());
+
+        if (one.get().getName() == null || one.get().getName().equals(""))
+            roles.add(role);
+        else
+            roles.add((Role) one.get());
+
         newUser.setRoles(roles);
 
         newUser.setUserUUID(UUID.randomUUID().toString());

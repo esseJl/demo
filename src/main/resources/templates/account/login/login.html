@@ -15,10 +15,13 @@
                 <form th:action="@{/login}" th:object="${user}" method="POST" enctype="utf8">
                     <h1>Please Sign In</h1>
 
-                    <div th:if="${param.error}" th:text="${param.error}">
-                        <div class="alert alert-danger">
+                    <div th:if="${param.error}">
+                        <h1 class="alert alert-danger" th:text="#{${param.error}}">
                             Invalid username and password.
-                        </div>
+                        </h1>
+                    </div>
+                    <div th:if="${param.message}">
+                        <h1 th:text="#{${param.message}}"></h1>
                     </div>
                     <div th:if="${param.logout}">
                         <div class="alert alert-info">
@@ -26,10 +29,10 @@
                         </div>
                     </div>
                     <div th:if="${param.saveUserSuccess}">
-                        <div class="alert alert-info">
+                        <h1 class="alert alert-info" th:text="#{${param.saveUserSuccess}}">
                             You have been registered.
                             please sign in
-                        </div>
+                        </h1>
                     </div>
 
                     <div class="col-12">

@@ -1,368 +1,388 @@
-<!doctype html>
-<html lang="en" dir="rtl">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl" xmlns:layout="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="this website it is about">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Shayan Ghazali">
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
     <title>Admin Panel</title>
-    <!-- css assets -->
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="../../static/assets/css/bootstrap.rtl.min.css">
-    <!-- datepicker -->
-    <link rel="stylesheet" href="../../static/assets/css/persian-datepicker.min.css">
-    <!-- select2 -->
-    <link rel="stylesheet" href="../../static/assets/css/select2.min.css">
-    <!-- admin layout -->
-    <link rel="stylesheet" href="../../static/assets/css/hyper-admin-layout-style.css">
-    <!-- blog admin  -->
-    <link rel="stylesheet" href="../../static/assets/css/hyper-blog-style.css">
+    <th:block th:fragment="basic-meta-link">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="this website it is about">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="Shayan Ghazali">
+        <!-- css assets -->
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="../../static/assets/css/bootstrap.rtl.min.css"
+              th:href="@{../assets/css/bootstrap.rtl.min.css}"
+        >
+        <!-- admin layout -->
+        <link rel="stylesheet" href="../../static/assets/css/hyper-admin-layout-style.css"
+              th:href="@{../assets/css/hyper-admin-layout-style.css}"
+        >
+    </th:block>
+
+
+    <th:block th:fragment="basic-blog-link">
+        <!-- datepicker -->
+        <link rel="stylesheet" href="../../static/assets/css/persian-datepicker.min.css"
+              th:href="@{../assets/css/persian-datepicker.min.css}"
+        >
+        <!-- select2 -->
+        <link rel="stylesheet" href="../../static/assets/css/select2.min.css"
+              th:href="@{../assets/css/select2.min.css}"
+        >
+        <!-- blog admin  -->
+        <link rel="stylesheet" href="../../static/assets/css/hyper-blog-style.css"
+              th:href="@{../assets/css/hyper-blog-style.css}"
+        >
+    </th:block>
+
 </head>
 <!-- settings will config here -->
 
 <body class="">
 
-    <div id="page-container">
-        <!-- right nav -->
-        <aside class="side-nav">
-            <!-- logo -->
-            <a href="#" class="logo">
+<div id="page-container">
+    <!-- right nav -->
+    <aside class="side-nav">
+        <!-- logo -->
+        <a href="#" class="logo">
                 <span class="logo-lg">
                     <img src="../../static/assets/images/logo.png" alt="" height="16">
                 </span>
-                <span class="logo-sm">
+            <span class="logo-sm">
                     <img src="../../static/assets/images/logo_sm.png" alt="" height="16">
                 </span>
-            </a>
-            <!-- accordion -->
-            <div class="accordion" id="accordionExample">
-                <h6 class="accordion-title">اپلیکیشن</h6>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        </a>
+        <!-- accordion -->
+        <div class="accordion" id="accordionExample">
+            <h6 class="accordion-title">اپلیکیشن</h6>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        <i class="icon-dashboard"></i>
-                        <span>رسانه</span>
-                    </button>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>رسانه</span>
+                </button>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
 
-                            <a href="#">اول</a>
-                            <a href="#">اول</a>
-                            <a href="#">اول</a>
+                        <a href="#">اول</a>
+                        <a href="#">اول</a>
+                        <a href="#">اول</a>
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <i class="icon-dashboard"></i>
-                        <span>کاربران</span>
-                    </button>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <a href="#">دوم</a>
-                            <a href="#">دوم</a>
-                            <a href="#">دوم</a>
+                    <i class="icon-dashboard"></i>
+                    <span>کاربران</span>
+                </button>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <a href="#">دوم</a>
+                        <a href="#">دوم</a>
+                        <a href="#">دوم</a>
 
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="icon-dashboard"></i>
-                        <span>تنظیمات</span>
-                    </button>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>تنظیمات</span>
+                </button>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
 
-                            <a href="#">سوم</a>
-                            <a href="#">سوم</a>
-                            <a href="#">سوم</a>
+                        <a href="#">سوم</a>
+                        <a href="#">سوم</a>
+                        <a href="#">سوم</a>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- accordion -->
-            <div class="accordion" id="accordionExampleTwo">
-                <h6 class="accordion-title">اپلیکیشن</h6>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        </div>
+        <!-- accordion -->
+        <div class="accordion" id="accordionExampleTwo">
+            <h6 class="accordion-title">اپلیکیشن</h6>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="icon-dashboard"></i>
-                        <span>بلاگ</span>
-                    </button>
-                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>بلاگ</span>
+                </button>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
+                    <div class="accordion-body">
 
-                            <a href="#">چهارم</a>
-                            <a href="#">چهارم</a>
-                            <a href="#">چهارم</a>
+                        <a href="#">چهارم</a>
+                        <a href="#">چهارم</a>
+                        <a href="#">چهارم</a>
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم پنجم</span>
-                    </button>
-                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
-                        <div class="accordion-body">
-                            <a href="#">پنجم</a>
-                            <a href="#">پنجم</a>
-                            <a href="#">پنجم</a>
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم پنجم</span>
+                </button>
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
+                    <div class="accordion-body">
+                        <a href="#">پنجم</a>
+                        <a href="#">پنجم</a>
+                        <a href="#">پنجم</a>
 
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم ششم</span>
-                    </button>
-                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم ششم</span>
+                </button>
+                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
+                    <div class="accordion-body">
 
-                            <a href="#">ششم</a>
-                            <a href="#">ششم</a>
-                            <a href="#">ششم</a>
+                        <a href="#">ششم</a>
+                        <a href="#">ششم</a>
+                        <a href="#">ششم</a>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- accordion -->
-            <div class="accordion" id="accordionExampleThree">
-                <h6 class="accordion-title">اپلیکیشن</h6>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        </div>
+        <!-- accordion -->
+        <div class="accordion" id="accordionExampleThree">
+            <h6 class="accordion-title">اپلیکیشن</h6>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم هفتم</span>
-                    </button>
-                    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم هفتم</span>
+                </button>
+                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
+                    <div class="accordion-body">
 
-                            <a href="#">هفتم</a>
-                            <a href="#">هفتم</a>
-                            <a href="#">هفتم</a>
+                        <a href="#">هفتم</a>
+                        <a href="#">هفتم</a>
+                        <a href="#">هفتم</a>
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم هشتم</span>
-                    </button>
-                    <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
-                        <div class="accordion-body">
-                            <a href="#">هشتم</a>
-                            <a href="#">هشتم</a>
-                            <a href="#">هشتم</a>
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم هشتم</span>
+                </button>
+                <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
+                    <div class="accordion-body">
+                        <a href="#">هشتم</a>
+                        <a href="#">هشتم</a>
+                        <a href="#">هشتم</a>
 
 
-                        </div>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم نهم</span>
-                    </button>
-                    <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم نهم</span>
+                </button>
+                <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExampleThree">
+                    <div class="accordion-body">
 
-                            <a href="#">نهم</a>
-                            <a href="#">نهم</a>
-                            <a href="#">نهم</a>
+                        <a href="#">نهم</a>
+                        <a href="#">نهم</a>
+                        <a href="#">نهم</a>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- accordion -->
-            <div class="accordion" id="accordionExampleFour">
-                <h6 class="accordion-title">اپلیکیشن</h6>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        </div>
+        <!-- accordion -->
+        <div class="accordion" id="accordionExampleFour">
+            <h6 class="accordion-title">اپلیکیشن</h6>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم دهم</span>
-                    </button>
-                    <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
-                        <div class="accordion-body">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم دهم</span>
+                </button>
+                <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
+                    <div class="accordion-body">
 
-                            <a href="#">دهم</a>
-                            <a href="#">دهم</a>
-                            <a href="#">دهم</a>
+                        <a href="#">دهم</a>
+                        <a href="#">دهم</a>
+                        <a href="#">دهم</a>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم یازدهم</span>
-                    </button>
-                    <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
-                        <div class="accordion-body">
-                            <a href="#">یازدهم</a>
-                            <a href="#">یازدهم</a>
-                            <a href="#">یازدهم</a>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                        <i class="icon-dashboard"></i>
-                        <span>آیتم دوازدهم</span>
-                    </button>
-                    <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
-                        <div class="accordion-body">
-
-                            <a href="#">دوازدهم</a>
-                            <a href="#">دوازدهم</a>
-                            <a href="#">دوازدهم</a>
-
-                        </div>
                     </div>
                 </div>
             </div>
-        </aside>
-        <!-- left white  -->
-        <div id="site-content">
-            <header class="site-header">
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم یازدهم</span>
+                </button>
+                <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
+                    <div class="accordion-body">
+                        <a href="#">یازدهم</a>
+                        <a href="#">یازدهم</a>
+                        <a href="#">یازدهم</a>
 
-                <div class="col-span">
-                    <button type="button" class="btn hamburger-btn">
-                        <i class="icon-hamburger"></i>
-                    </button>
-                    <div class="search-form">
-                        <form method="">
-                            <div class="input-group">
-                                <input type="text" class="form-control dropdown-toggle"
-                                    aria-label="Sizing example input" placeholder="جستجو..." id="top-search"
-                                    aria-describedby="inputGroup-sizing-default">
-                                <button class="btn btn-primary" type="button" id="button-addon1">جستجو</button>
-                            </div>
-                        </form>
-                        <div class="dropdown-menu dropdown-menu-animated" id="search-dropdown">
-                            <!-- item-->
-                            <div class="dropdown-header noti-title">
-                                <h5 class="text-overflow mb-2"><span class="text-danger">17</span> نتیجه یافت شد</h5>
-                            </div>
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <i class="uil-notes font-16 me-1"></i>
-                                <span>آنالیز گذارشات</span>
-                            </a>
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <i class="uil-life-ring font-16 me-1"></i>
-                                <span>چطور می تونم کمک کنم؟</span>
-                            </a>
-                            <!-- item-->
-                            <a href="#" class="dropdown-item notify-item">
-                                <i class="uil-cog font-16 me-1"></i>
-                                <span>پروفایل کاربر</span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
-                <div class="toolbar-menu">
-                    <ul class="list-unstyled mb-0">
-                        <li class="search-btn-item">
-                            <button type="button" class="btn">
-                                <i class="icon-search"></i>
-                            </button>
-                        </li>
-                        <li class="setting-btn-item">
-                            <button type="button" class="btn">
-                                <i class="icon-settings"></i>
-                            </button>
-                        </li>
-                        <li class="account-dropdown-item">
-                            <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="false" aria-expanded="false">
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                    <i class="icon-dashboard"></i>
+                    <span>آیتم دوازدهم</span>
+                </button>
+                <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionExampleFour">
+                    <div class="accordion-body">
+
+                        <a href="#">دوازدهم</a>
+                        <a href="#">دوازدهم</a>
+                        <a href="#">دوازدهم</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- left white  -->
+    <div id="site-content">
+        <header class="site-header">
+
+            <div class="col-span">
+                <button type="button" class="btn hamburger-btn">
+                    <i class="icon-hamburger"></i>
+                </button>
+                <div class="search-form">
+                    <form method="">
+                        <div class="input-group">
+                            <input type="text" class="form-control dropdown-toggle"
+                                   aria-label="Sizing example input" placeholder="جستجو..." id="top-search"
+                                   aria-describedby="inputGroup-sizing-default">
+                            <button class="btn btn-primary" type="button" id="button-addon1">جستجو</button>
+                        </div>
+                    </form>
+                    <div class="dropdown-menu dropdown-menu-animated" id="search-dropdown">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h5 class="text-overflow mb-2"><span class="text-danger">17</span> نتیجه یافت شد</h5>
+                        </div>
+                        <!-- item-->
+                        <a href="#" class="dropdown-item notify-item">
+                            <i class="uil-notes font-16 me-1"></i>
+                            <span>آنالیز گذارشات</span>
+                        </a>
+                        <!-- item-->
+                        <a href="#" class="dropdown-item notify-item">
+                            <i class="uil-life-ring font-16 me-1"></i>
+                            <span>چطور می تونم کمک کنم؟</span>
+                        </a>
+                        <!-- item-->
+                        <a href="#" class="dropdown-item notify-item">
+                            <i class="uil-cog font-16 me-1"></i>
+                            <span>پروفایل کاربر</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar-menu">
+                <ul class="list-unstyled mb-0">
+                    <li class="search-btn-item">
+                        <button type="button" class="btn">
+                            <i class="icon-search"></i>
+                        </button>
+                    </li>
+                    <li class="setting-btn-item">
+                        <button type="button" class="btn">
+                            <i class="icon-settings"></i>
+                        </button>
+                    </li>
+                    <li class="account-dropdown-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
                                 <span class="account-user-avatar">
                                     <img src="../../static/assets/images/avatar-1.jpg" alt="user-image">
                                 </span>
-                                <span>
+                            <span>
                                     <span class="account-user-name">شایان غزالی</span>
                                     <span class="account-position">مدیر کل</span>
                                 </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end">
+                            <!-- item-->
+                            <div class=" dropdown-header">
+                                <h6 class="text-overflow m-0">خوش آمدین !</h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item">
+                                <i class="mdi mdi-account-circle me-1"></i>
+                                <span>حساب کاربری</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end">
-                                <!-- item-->
-                                <div class=" dropdown-header">
-                                    <h6 class="text-overflow m-0">خوش آمدین !</h6>
-                                </div>
 
-                                <!-- item-->
-                                <a href="#" class="dropdown-item">
-                                    <i class="mdi mdi-account-circle me-1"></i>
-                                    <span>حساب کاربری</span>
-                                </a>
+                            <!-- item-->
+                            <a href="#" class="dropdown-item">
+                                <i class="mdi mdi-account-edit me-1"></i>
+                                <span>تنظیمات</span>
+                            </a>
 
-                                <!-- item-->
-                                <a href="#" class="dropdown-item">
-                                    <i class="mdi mdi-account-edit me-1"></i>
-                                    <span>تنظیمات</span>
-                                </a>
+                            <!-- item-->
+                            <a href="#" class="dropdown-item">
+                                <i class="mdi mdi-lifebuoy me-1"></i>
+                                <span>پشتیبانی</span>
+                            </a>
 
-                                <!-- item-->
-                                <a href="#" class="dropdown-item">
-                                    <i class="mdi mdi-lifebuoy me-1"></i>
-                                    <span>پشتیبانی</span>
-                                </a>
+                            <!-- item-->
+                            <a href="#" class="dropdown-item">
+                                <i class="mdi mdi-lock-outline me-1"></i>
+                                <span>صفحه نمایش</span>
+                            </a>
 
-                                <!-- item-->
-                                <a href="#" class="dropdown-item">
-                                    <i class="mdi mdi-lock-outline me-1"></i>
-                                    <span>صفحه نمایش</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="#" class="dropdown-item">
-                                    <i class="mdi mdi-logout me-1"></i>
-                                    <span>خروج</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                            <!-- item-->
+                            <a href="#" class="dropdown-item">
+                                <i class="mdi mdi-logout me-1"></i>
+                                <span>خروج</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
 
-            </header>
+        </header>
 
-            <main class="main-content" role="main">
-                <div class="body-container">
-                    <section id="blog-content" class="row">
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">عنوان مقاله</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editor" class="form-label">محتوا مقاله</label>
-                                <textarea id="editor">
+        <main class="main-content" role="main">
+            <div class="body-container">
+                <section layout:fragment="content" id="blog-content" class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">عنوان مقاله</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editor" class="form-label">محتوا مقاله</label>
+                            <textarea id="editor">
                                 <h1>محتوای مفید استایل</h1>
                                 <p>css محتوای پیش فرض بسیار اساسی و غیرقابل تصور است تا به شما به عنوان توسعه دهنده اجازه دهد سبک های مورد نظر خود را برای ایجاد یک محیط نوشتاری خوب WYSIWYG ادغام کنید.</p>
                                 <p>با این وجود ، در اینجا برخی از تکنیک هایی است که اغلب خودمان به کار می گیریم و باعث بهبود تجربه ویرایش در TinyMCE می شود</p>
@@ -391,155 +411,190 @@
                                 <p>به طور پیش فرض ، عناصر قابل انتخاب مانند تصاویر ، جداول و عناصر غیرقابل ویرایش با استفاده از الگوی رنگ آبی روشن می شود <code>outline</code> property. On drawback of using <code>outline</code> is that the outline does not follow rounded borders.
                                 <p><img src="../../static/assets/images/avatar-5.jpg" width="390" height="260" /></p>
                             </textarea>
-                            
-                            </div>
 
                         </div>
-                        <aside class="col-md-4">
 
-                            <div class="card  mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#publishcard" aria-expanded="true"
-                                    aria-controls="publishcard">انتشار</div>
-                                <div class="collapse show" id="publishcard">
-                                    <div class="card-body">
-                                        <!-- <h5 class="card-title">Special title treatment</h5> -->
-                                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
-                                            <input type="text" class="form-control form-control-sm pub-date" id="exampleInputEmail2">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
-                                            <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
-                                                <option value="AL">جلالی</option>
-                                                <option value="WY">غزالی</option>
-                                            </select>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary d-block ms-auto" type="button"
-                                            onclick='console.log(tinymce.get("editor").getContent());'>انتشار</button>
+                    </div>
+                    <aside class="col-md-4">
+
+                        <div class="card  mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#publishcard"
+                                 aria-expanded="true"
+                                 aria-controls="publishcard">انتشار
+                            </div>
+                            <div class="collapse show" id="publishcard">
+                                <div class="card-body">
+                                    <!-- <h5 class="card-title">Special title treatment</h5> -->
+                                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">تاریخ انتشار</label>
+                                        <input type="text" class="form-control form-control-sm pub-date"
+                                               id="exampleInputEmail2">
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputAuthor1" class="form-label">نویسنده</label>
+                                        <select id="exampleInputAuthor1" class="js-example-basic-single" name="state">
+                                            <option value="AL">جلالی</option>
+                                            <option value="WY">غزالی</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary d-block ms-auto" type="button"
+                                            onclick='console.log(tinymce.get("editor").getContent());'>انتشار
+                                    </button>
                                 </div>
                             </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#choosecard" aria-expanded="true"
-                                    aria-controls="choosecard">عکس شاخص</div>
-                                <div class="collapse show" id="choosecard">
-                                    <div class="card-body text-center">
-                                        <a href="#">عکس شاخص را انتخاب کنید</a>
-                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#excerptcard" aria-expanded="true"
-                                    aria-controls="excerptcard">چکیده مقاله</div>
-                                <div class="collapse show" id="excerptcard">
-                                    <div class="card-body">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#catcard" aria-expanded="true"
-                                    aria-controls="catcard">دسته بندی
-                                </div>
-                                <div class="collapse show" id="catcard">
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#tagcard" aria-expanded="true"
-                                    aria-controls="tagcard">بر چسب ها
-                                </div>
-                                <div class="collapse show" id="tagcard">
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#slugcard" aria-expanded="true"
-                                    aria-controls="slugcard">پیوند یکتا</div>
-                                <div class="collapse show" id="slugcard">
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#commentcard" aria-expanded="true"
-                                    aria-controls="commentcard">گفتگو
-                                </div>
-                                <div class="collapse show" id="commentcard">
-                                    <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                              پذیرفتن دیدگاه
-                                            </label>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        </aside>
-                    </section>
-                </div>
-            </main>
-            <footer class="site-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <script>document.write(new Date().getFullYear())</script>
-                            20212021 © Hyper - Coderthemes.com
                         </div>
-                        <div class="col-md-6">
-                            <div class="text-md-end footer-links d-none d-md-block">
-                                <a href="javascript: void(0);">درباره ما</a>
-                                <a href="javascript: void(0);">پشتیبانی</a>
-                                <a href="javascript: void(0);">ارتباط با ما</a>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#choosecard"
+                                 aria-expanded="true"
+                                 aria-controls="choosecard">عکس شاخص
                             </div>
+                            <div class="collapse show" id="choosecard">
+                                <div class="card-body text-center">
+                                    <a href="#">عکس شاخص را انتخاب کنید</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#excerptcard"
+                                 aria-expanded="true"
+                                 aria-controls="excerptcard">چکیده مقاله
+                            </div>
+                            <div class="collapse show" id="excerptcard">
+                                <div class="card-body">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#catcard"
+                                 aria-expanded="true"
+                                 aria-controls="catcard">دسته بندی
+                            </div>
+                            <div class="collapse show" id="catcard">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#tagcard"
+                                 aria-expanded="true"
+                                 aria-controls="tagcard">بر چسب ها
+                            </div>
+                            <div class="collapse show" id="tagcard">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#slugcard"
+                                 aria-expanded="true"
+                                 aria-controls="slugcard">پیوند یکتا
+                            </div>
+                            <div class="collapse show" id="slugcard">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#commentcard"
+                                 aria-expanded="true"
+                                 aria-controls="commentcard">گفتگو
+                            </div>
+                            <div class="collapse show" id="commentcard">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                               checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            پذیرفتن دیدگاه
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </aside>
+                </section>
+            </div>
+        </main>
+        <footer class="site-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>document.write(new Date().getFullYear())</script>
+                        20212021 © Hyper - Coderthemes.com
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-end footer-links d-none d-md-block">
+                            <a href="javascript: void(0);">درباره ما</a>
+                            <a href="javascript: void(0);">پشتیبانی</a>
+                            <a href="javascript: void(0);">ارتباط با ما</a>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-        <!-- setting aside -->
-        <aside class="setting-bar">
-            <div class="bar-title">
-                <a href="javascript:void(0);" class="float-end">
-                    <i class="icon-close"></i>
-                </a>
-                <h5 class="bar-headline">تنظیمات</h5>
             </div>
-            <div class="simplebar-content p-3">
-                <h5 class="mt-3">تم های رنگی</h5>
-                <hr class="mt-1">
-                <div class="form-check form-switch mb-1">
-                    <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light"
-                        id="light-mode-check" checked="">
-                    <label class="form-check-label" for="light-mode-check">حالت روشن</label>
-                </div>
-            </div>
-        </aside>
-        <div class="overlay"></div>
+        </footer>
     </div>
+    <!-- setting aside -->
+    <aside class="setting-bar">
+        <div class="bar-title">
+            <a href="javascript:void(0);" class="float-end">
+                <i class="icon-close"></i>
+            </a>
+            <h5 class="bar-headline">تنظیمات</h5>
+        </div>
+        <div class="simplebar-content p-3">
+            <h5 class="mt-3">تم های رنگی</h5>
+            <hr class="mt-1">
+            <div class="form-check form-switch mb-1">
+                <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light"
+                       id="light-mode-check" checked="">
+                <label class="form-check-label" for="light-mode-check">حالت روشن</label>
+            </div>
+        </div>
+    </aside>
+    <div class="overlay"></div>
+</div>
 
-
+<!--block-basic-js-src-->
+<th:block th:fragment="basic-js-src">
     <!-- js assets -->
-    <script src="../../static/assets/js/jquery.min.js"></script>
-    <script src="../../static/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../../static/assets/js/hyper-admin-layout-functions.js"></script>
+    <script src="../../static/assets/js/jquery.min.js"
+            th:src="@{../assets/js/jquery.min.js}"
+    ></script>
+    <script src="../../static/assets/js/bootstrap.bundle.min.js"
+            th:src="@{../assets/js/bootstrap.bundle.min.js}"
+    ></script>
+    <script src="../../static/assets/js/hyper-admin-layout-functions.js"
+            th:src="@{../assets/js/hyper-admin-layout-functions.js}"
+    ></script>
+</th:block>
+
+<!--block-basic-blog-js-src-->
+<th:block th:fragment="basic-blog-js-src">
     <!-- only for datepicker start -->
-    <script src="../../static/assets/js/persian-date.min.js"></script>
-    <script src="../../static/assets/js/persian-datepicker.min.js"></script>
+    <script src="../../static/assets/js/persian-date.min.js"
+            th:src="@{../assets/js/persian-date.min.js}"
+    ></script>
+    <script src="../../static/assets/js/persian-datepicker.min.js"
+            th:src="@{../assets/js/persian-datepicker.min.js}"
+    ></script>
     <!-- only for datepicker end -->
+
     <!-- only for select2 start -->
-    <script src="../../static/assets/js/select2.min.js"></script>
+    <script src="../../static/assets/js/select2.min.js"
+            th:src="@{../assets/js/select2.min.js}"
+    ></script>
     <!-- only for select2 end -->
     <!-- only for tinymce start -->
-    <script src="../../static/assets/js/tinymce.min.js"></script>
+    <script src="../../static/assets/js/tinymce.min.js"
+            th:src="@{../assets/js/tinymce.min.js}"
+    ></script>
     <!-- only for tinymce end -->
+
     <script>
         tinymce.init({
             selector: '#myTextarea',
@@ -566,39 +621,39 @@
             style_formats: [
                 {
                     title: 'Headings', items: [
-                        { title: 'Heading 1', format: 'h1' },
-                        { title: 'Heading 2', format: 'h2' },
-                        { title: 'Heading 3', format: 'h3' },
-                        { title: 'Heading 4', format: 'h4' },
-                        { title: 'Heading 5', format: 'h5' },
-                        { title: 'Heading 6', format: 'h6' }
+                        {title: 'Heading 1', format: 'h1'},
+                        {title: 'Heading 2', format: 'h2'},
+                        {title: 'Heading 3', format: 'h3'},
+                        {title: 'Heading 4', format: 'h4'},
+                        {title: 'Heading 5', format: 'h5'},
+                        {title: 'Heading 6', format: 'h6'}
                     ]
                 },
                 {
                     title: 'Inline', items: [
-                        { title: 'Bold', format: 'bold' },
-                        { title: 'Italic', format: 'italic' },
-                        { title: 'Underline', format: 'underline' },
-                        { title: 'Strikethrough', format: 'strikethrough' },
-                        { title: 'Superscript', format: 'superscript' },
-                        { title: 'Subscript', format: 'subscript' },
-                        { title: 'Code', format: 'code' }
+                        {title: 'Bold', format: 'bold'},
+                        {title: 'Italic', format: 'italic'},
+                        {title: 'Underline', format: 'underline'},
+                        {title: 'Strikethrough', format: 'strikethrough'},
+                        {title: 'Superscript', format: 'superscript'},
+                        {title: 'Subscript', format: 'subscript'},
+                        {title: 'Code', format: 'code'}
                     ]
                 },
                 {
                     title: 'Blocks', items: [
-                        { title: 'Paragraph', format: 'p' },
-                        { title: 'Blockquote', format: 'blockquote' },
-                        { title: 'Div', format: 'div' },
-                        { title: 'Pre', format: 'pre' }
+                        {title: 'Paragraph', format: 'p'},
+                        {title: 'Blockquote', format: 'blockquote'},
+                        {title: 'Div', format: 'div'},
+                        {title: 'Pre', format: 'pre'}
                     ]
                 },
                 {
                     title: 'Align', items: [
-                        { title: 'Left', format: 'alignleft' },
-                        { title: 'Center', format: 'aligncenter' },
-                        { title: 'Right', format: 'alignright' },
-                        { title: 'Justify', format: 'alignjustify' }
+                        {title: 'Left', format: 'alignleft'},
+                        {title: 'Center', format: 'aligncenter'},
+                        {title: 'Right', format: 'alignright'},
+                        {title: 'Justify', format: 'alignjustify'}
                     ]
                 }
             ],
@@ -617,7 +672,7 @@
                         var base64 = reader.result.split(',')[1];
                         var blobInfo = blobCache.create(id, file, base64);
                         blobCache.add(blobInfo);
-                        cb(blobInfo.blobUri(), { title: file.name });
+                        cb(blobInfo.blobUri(), {title: file.name});
                     };
                     reader.readAsDataURL(file);
                 };
@@ -733,7 +788,7 @@
         });
     </script>
 
-
+</th:block>
 </body>
 
 </html>
