@@ -9,19 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/layout", method = RequestMethod.GET)
     public String adminHome() {
         return "admin/layout";
-    }
-
-    @RequestMapping(value = "/blog", method = RequestMethod.GET)
-    public String blogHome() {
-        return "admin/blog-list";
-    }
-
-    @RequestMapping(value = "/post", method = RequestMethod.GET)
-    public String newPost() {
-        return "admin/post-page";
     }
 
 
