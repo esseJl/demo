@@ -1,6 +1,6 @@
 package com.example.demo.service.category;
 
-import com.example.demo.model.category.ProductCategory;
+import com.example.demo.model.category.cat4product.ProductCategory;
 import com.example.demo.repository.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

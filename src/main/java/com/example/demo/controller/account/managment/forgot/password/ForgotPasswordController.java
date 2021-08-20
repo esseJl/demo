@@ -132,9 +132,9 @@ public class ForgotPasswordController {
 
     @PostMapping("/changePassword")
     public String changePassword(@Valid @ModelAttribute(name = "Password") Password password,
-                                 BindingResult bindingResult,
+                                 BindingResult bindingResult, @ModelAttribute User user,
                                  @RequestParam(name = "resetPasswordToken", required = true, defaultValue = "") String token,
-                                 Model model, @ModelAttribute User user, HttpServletRequest request) {
+                                 Model model, HttpServletRequest request) {
 
         final String path = "/resetPasswordConfirm/" + token;
         if (token.trim().equals("")) {
@@ -161,6 +161,9 @@ public class ForgotPasswordController {
             user.setHiddenCaptcha(key);
             model.addAttribute("user", user);
             model.addAttribute("captchaMessage", "invalid.captcha");
+
+            model.addAttribute("passwordResetToken", token);
+            
             return "account/management/forgot-password/reset-password-confirm-page";
         }
         getCaptcha(user);
@@ -170,6 +173,7 @@ public class ForgotPasswordController {
         user.setHiddenCaptcha(key);
 
         model.addAttribute("passwordResetToken", token);
+
         if (bindingResult.hasErrors()) {
             return "account/management/forgot-password/reset-password-confirm-page";
         }

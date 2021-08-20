@@ -2,7 +2,7 @@ package com.example.demo.model.product;
 
 
 import com.example.demo.model.brand.ProductBrand;
-import com.example.demo.model.category.ProductCategory;
+import com.example.demo.model.category.cat4product.ProductCategory;
 import com.example.demo.model.image.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;

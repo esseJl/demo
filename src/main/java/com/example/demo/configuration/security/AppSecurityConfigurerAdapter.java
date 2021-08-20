@@ -1,6 +1,8 @@
 package com.example.demo.configuration.security;
 
 import com.example.demo.filter.authentication.custom.CustomAuthenticationFilter;
+import com.example.demo.model.user.User;
+import com.example.demo.model.user.principal.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +23,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.Collection;
 
 
 @Configuration
@@ -42,14 +47,16 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+
                 .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                .filterSecurityInterceptorOncePerRequest(true)
                 .antMatchers("/**/admin/**").hasRole("ADMIN")
                 .antMatchers("/**/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/").permitAll()
+                .antMatchers("/home/**", "/assets/**").permitAll()
                 //.requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
-                .and().httpBasic()
+
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successHandler(loginSuccessHandler())
@@ -66,12 +73,17 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll()
-                .and().httpBasic().and()
+                .and().httpBasic()
+                .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return ((request, response, authentication) -> {
+            UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+            System.out.println(principal.getUsername());
+           
+            //TODO filter principal for redirect
             response.sendRedirect(getServerContextPath());
         });
     }

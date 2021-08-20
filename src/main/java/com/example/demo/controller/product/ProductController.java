@@ -1,7 +1,7 @@
 package com.example.demo.controller.product;
 
 import com.example.demo.model.brand.ProductBrand;
-import com.example.demo.model.category.ProductCategory;
+import com.example.demo.model.category.cat4product.ProductCategory;
 import com.example.demo.model.product.Product;
 import com.example.demo.service.category.CategoryService;
 import com.example.demo.service.brand.BrandService;

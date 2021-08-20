@@ -1,0 +1,83 @@
+.hp-list-table {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px #0000000a;
+    border-spacing: 0;
+    width: 100%;
+    clear: both;
+    margin: 0;
+    table-layout: fixed;
+    text-align: right;
+    line-height: 1.5em;
+    font-size: 14px;
+    color: #2c3338;
+    a {
+        color: #2271b1;
+        text-decoration: none;
+    }
+    td {
+        vertical-align: top;
+        border-bottom: 1px solid #c3c4c7;
+        padding: 8px 10px;
+        font-weight: 400;
+    }
+    th {
+        border-bottom: 1px solid #c3c4c7;
+        padding: 8px 10px;
+        font-weight: 400;
+        .sortable {
+            padding: 0;
+            a {
+                display: block;
+                overflow: hidden;
+                padding: 8px;
+            }
+        }
+    }
+    tr {
+        .row-actions {
+            display: none;
+            .trash a {
+                color: #b32d2e;
+            }
+        }
+        &:hover .row-actions {
+            display: block;
+        }
+    }
+    tbody tr:nth-child(odd) {
+        background-color: #f6f7f7;
+    }
+    .sortable span::after {
+        display: inline-block;
+        margin-right: 0.255em;
+        vertical-align: middle;
+        content: "";
+        border-bottom: 0.3em solid;
+        border-left: 0.3em solid transparent;
+        border-top: 0;
+        border-right: 0.3em solid transparent;
+    }
+    .sortable.desc span::after {
+        border-top: 0.3em solid;
+        border-bottom: 0;
+    }
+    
+    .check-column {
+        width: 2.2em;
+        vertical-align: top;
+        padding: 11px 3px 0 0;
+        input {
+            margin: 0 8px 0 0;
+            padding: 0;
+            vertical-align: text-top;
+        }
+    }
+
+    .comment-number {
+        background-color: #6c757d;
+        &:hover {
+            background-color: #2271b1;
+        }
+    }
+}
