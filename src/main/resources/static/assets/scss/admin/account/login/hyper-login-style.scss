@@ -1,0 +1,42 @@
+@import "../../layout/sub-module/font-init.scss";
+.bg-primary-soft {
+    background-color: rgba(33, 99, 232, 0.1) !important;
+}
+[type=email], [type=number], [type=tel], [type=url]{
+    direction: rtl;
+}
+.form-control:focus {
+    color: #29292e;
+    background-color: #fff;
+    border-color: #2163e8;
+    outline: 0;
+    box-shadow: 0 0 0 0 #2163e840;
+}
+.btn-success {
+    color: #fff;
+    background-color: #0cbc87;
+    border-color: #0cbc87;
+}
+.bg-google {
+    background-color: #3c7ff1;
+    color: #fff;
+}
+.bg-facebook {
+    background-color: #5d82d1;
+    color: #fff;
+}
+.bg-google:hover {
+    background-color: #3672d9;
+    color: #fff;
+}
+.bg-facebook:hover {
+    background-color: #5475bc;
+    color: #fff;
+}
+hr {
+    margin: 1rem 0;
+    color: #a1a1a8;
+    background-color: currentColor;
+    border: 0;
+    opacity: 0.25;
+}

@@ -19,7 +19,7 @@ var destOptions = {
 // -------------------------------------------------------------
 // START MANAGE CSS - FROM TO
 // -------------------------------------------------------------
-const css_files = ['./src/main/resources/static/assets/scss/admin/layout/hyper-admin-layout-style.scss' , './src/main/resources/static/assets/scss/admin/blog/hyper-blog-style.scss' , './src/main/resources/static/assets/scss/admin/blog/blog-list/hyper-blog-list-style.scss'];
+const css_files = ['./src/main/resources/static/assets/scss/admin/layout/hyper-admin-layout-style.scss' , './src/main/resources/static/assets/scss/admin/blog/hyper-blog-style.scss' , './src/main/resources/static/assets/scss/admin/blog/blog-list/hyper-blog-list-style.scss' , './src/main/resources/static/assets/scss/admin/account/login/hyper-login-style.scss'];
 const css_multi_dest = ['./src/main/resources/static/assets/css'];
 // -----------------------------
 gulp.task('sass', function () {
