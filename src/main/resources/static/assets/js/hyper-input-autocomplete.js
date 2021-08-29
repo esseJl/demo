@@ -49,8 +49,7 @@ var AutoComplete = /** @class */ (function () {
                 error: function () {
                 }
             };
-            jQuery.ajax(fragment_refresh);
-            // jQuery.ajax(fragment_refresh).complete(() => { });
+            // jQuery.ajax(fragment_refresh);
             _this.list.forEach(function (Element) {
                 if (Element.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     b = document.createElement("DIV");
@@ -122,28 +121,57 @@ var Chips = /** @class */ (function (_super) {
     __extends(Chips, _super);
     function Chips(chipsContainer) {
         var _this = _super.call(this, document.querySelector("input.has-cat-autocomplete"), ["ایران", "آموزش", "فرهنگ", "فلسفه", "ادبیات", "هنر", "سیاسی", "منطق", "اقتصادی", "سرمایه داری و آسیب ها", "مفتی بی ریشه و ریشه ی مفتی", "سبیل نیچه"]) || this;
+        _this.addNewBtn = _this.input.nextElementSibling;
         _this.chipsContainer = chipsContainer;
+        Chips.inputTemp = chipsContainer.previousElementSibling;
+        _this.addNewBtn.addEventListener("click", function (e) {
+            if (!Chips.inputValueArray.includes(_this.input.value.trim())) {
+                var span = document.createElement("SPAN");
+                span.className = "remove";
+                span.innerHTML = "<i class='icon-close'></i>";
+                var li = document.createElement("LI");
+                li.setAttribute("title", _this.input.value);
+                li.appendChild(span);
+                li.appendChild(document.createTextNode(_this.input.value));
+                new ChipsItem(span, li, _this.input.value);
+                _this.chipsContainer.appendChild(li);
+                Chips.inputValueArray.push(_this.input.value.trim());
+                Chips.inputTemp.value = Chips.inputValueArray.toString();
+                _this.input.value = "";
+            }
+        });
         return _this;
     }
     Chips.prototype.attachment = function (target) {
         this.input.value = target.querySelector("input").value;
-        var span = document.createElement("SPAN");
-        span.className = "remove";
-        span.innerHTML = "<i class='icon-close'></i>";
-        var li = document.createElement("LI");
-        li.setAttribute("title", this.input.value);
-        li.appendChild(span);
-        li.appendChild(document.createTextNode(this.input.value));
-        new ChipsItem(span, li);
-        this.chipsContainer.appendChild(li);
+        if (!Chips.inputValueArray.includes(this.input.value)) {
+            var span = document.createElement("SPAN");
+            span.className = "remove";
+            span.innerHTML = "<i class='icon-close'></i>";
+            var li = document.createElement("LI");
+            li.setAttribute("title", this.input.value);
+            li.appendChild(span);
+            li.appendChild(document.createTextNode(this.input.value));
+            new ChipsItem(span, li, this.input.value);
+            this.chipsContainer.appendChild(li);
+            Chips.inputValueArray.push(this.input.value);
+            Chips.inputTemp.value = Chips.inputValueArray.toString();
+            this.input.value = "";
+        }
         this.closeAllLists();
     };
+    Chips.inputValueArray = [];
     return Chips;
 }(AutoComplete));
 var ChipsItem = /** @class */ (function () {
-    function ChipsItem(span, item) {
+    function ChipsItem(span, item, value) {
         span.addEventListener("click", function (e) {
             item.remove();
+            var index = Chips.inputValueArray.indexOf(value);
+            if (index > -1) {
+                Chips.inputValueArray.splice(index, 1);
+            }
+            Chips.inputTemp.value = Chips.inputValueArray.toString();
         });
     }
     return ChipsItem;
