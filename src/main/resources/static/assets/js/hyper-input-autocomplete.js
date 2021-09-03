@@ -15,17 +15,16 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var AutoComplete = /** @class */ (function () {
-    function AutoComplete(input, list) {
+    function AutoComplete(input) {
         this.currentFocus = -1;
         this.input = input;
-        this.list = list;
         this.container = (input.parentNode.parentNode);
         this.handler();
     }
     AutoComplete.prototype.handler = function () {
         var _this = this;
         this.input.addEventListener("input", function (e) {
-            var a, b, val = _this.input.value;
+            var a, requestTimeout, val = _this.input.value.trim();
             _this.closeAllLists();
             if (!val) {
                 return false;
@@ -35,57 +34,14 @@ var AutoComplete = /** @class */ (function () {
             a.setAttribute("id", _this.input.id + "autocomplete-list");
             a.setAttribute("class", "autocomplete-items");
             _this.container.appendChild(a);
-            // var base_url = window.location.origin;
-            // "http://stackoverflow.com"
-            var fragment_refresh = {
-                url: window.location.origin + '/admin/post/category/' + _this.input.value.trim(),
-                type: 'GET',
-                data: {
-                    time: new Date().getTime()
-                },
-                timeout: 5000,
-                beforeSend: function () {
-                },
-                success: function (data) {
-                    console.log(data + " first");
-                },
-                error: function () {
-                    console.log("error first");
-                }
-            };
-            jQuery.ajax(fragment_refresh);
-            jQuery.getJSON(window.location.origin + '/admin/post/category/' + _this.input.value.trim(), function (data) {
-                console.log(data + " second");
-                // if (data.length) {
-                //     var items = [];
-                //     jQuery.each(data, function (index, val) {
-                //         var cats = [];
-                //         jQuery.each(val.categories, function (cat_index, cat_val) {
-                //             cats.push(cat_val.name);
-                //         });
-                //         cats = cats.join(" , ");
-                //         items.push('<li id="' + index + '"><a href="' + val.link + '"><img src="' + object_live_search_param.template_directory + '/assets/img/svg-icon/search-suggestion-icn.svg" alt="search icon"><p>' + val.title.rendered + ' <span> در دسته : ' + cats + '</span></p></li>');
-                //     });
-                //     this.searchFormSuggestion.innerHTML = `<ul class="live-search">${items.join("")}</ul>`;
-                // } else {
-                //     this.searchFormSuggestion.innerHTML = '<div class="search-progress"><span>موردی یافت نشد !</span></div>';
-                // }
-            });
-            _this.list.forEach(function (Element) {
-                if (Element.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    b = document.createElement("DIV");
-                    b.innerHTML = "<strong>" + Element.substr(0, val.length) + "</strong>";
-                    b.innerHTML += Element.substr(val.length);
-                    b.innerHTML += "<input type='hidden' value='" + Element + "'>";
-                    b.addEventListener("click", _this.attachment.bind(_this, b));
-                    a.appendChild(b);
-                }
-            });
+            a.innerHTML = '<div class="search-progress"><span>در حال جستجو ..</span><div class="loader"></div></div>';
+            clearTimeout(requestTimeout);
+            requestTimeout = setTimeout(_this.sendRequest.bind(_this, a, val), 1500);
         });
         this.input.addEventListener("keydown", function (e) {
-            var x = document.getElementById(_this.input.id + "autocomplete-list");
-            if (x) {
-                x = (x.getElementsByTagName("div"));
+            var x = document.querySelectorAll("#" + _this.input.id + "autocomplete-list > div:not(.search-progress):not(.search-progress)");
+            if (!x) {
+                return false;
             }
             if (e.keyCode == 40) {
                 _this.currentFocus++;
@@ -112,6 +68,29 @@ var AutoComplete = /** @class */ (function () {
         this.input.value = target.querySelector("input").value;
         this.closeAllLists();
     };
+    AutoComplete.prototype.sendRequest = function (a, val) {
+        var _this = this;
+        var b;
+        a.innerHTML = '';
+        jQuery.getJSON(window.location.origin + '/admin/post/category/' + this.input.value.trim(), function (data) {
+            a.innerHTML = '';
+            data.forEach(function (Element) {
+                if (Element.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    b = document.createElement("DIV");
+                    b.innerHTML = "<strong>" + Element.substr(0, val.length) + "</strong>";
+                    b.innerHTML += Element.substr(val.length);
+                    b.innerHTML += "<input type='hidden' value='" + Element + "'>";
+                    b.addEventListener("click", _this.attachment.bind(_this, b));
+                    a.appendChild(b);
+                }
+            });
+            if (!data.length) {
+                a.innerHTML = '<div class="search-progress"><span>موردی یافت نشد !</span></div>';
+            }
+        }).fail(function () {
+            console.log("error in category ajax");
+        });
+    };
     AutoComplete.prototype.addActive = function (x) {
         if (!x)
             return false;
@@ -132,7 +111,7 @@ var AutoComplete = /** @class */ (function () {
         if (target === void 0) { target = true; }
         this.container.querySelectorAll(".autocomplete-items").forEach(function (Element) {
             if (target && target != Element && target != _this.input) {
-                Element.parentNode.removeChild(Element);
+                Element.remove();
             }
         });
     };
@@ -141,12 +120,12 @@ var AutoComplete = /** @class */ (function () {
 var Chips = /** @class */ (function (_super) {
     __extends(Chips, _super);
     function Chips(chipsContainer) {
-        var _this = _super.call(this, document.querySelector("input.has-cat-autocomplete"), ["ایران", "آموزش", "فرهنگ", "فلسفه", "ادبیات", "هنر", "سیاسی", "منطق", "اقتصادی", "سرمایه داری و آسیب ها", "مفتی بی ریشه و ریشه ی مفتی", "سبیل نیچه"]) || this;
+        var _this = _super.call(this, document.querySelector("input.has-cat-autocomplete")) || this;
         _this.addNewBtn = _this.input.nextElementSibling;
         _this.chipsContainer = chipsContainer;
         Chips.inputTemp = chipsContainer.previousElementSibling;
         _this.addNewBtn.addEventListener("click", function (e) {
-            if (!Chips.inputValueArray.includes(_this.input.value.trim())) {
+            if (_this.input.value.trim() != '' && !Chips.inputValueArray.includes(_this.input.value.trim())) {
                 var span = document.createElement("SPAN");
                 span.className = "remove";
                 span.innerHTML = "<i class='icon-close'></i>";
