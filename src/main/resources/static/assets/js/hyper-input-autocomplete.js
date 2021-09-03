@@ -35,9 +35,11 @@ var AutoComplete = /** @class */ (function () {
             a.setAttribute("id", _this.input.id + "autocomplete-list");
             a.setAttribute("class", "autocomplete-items");
             _this.container.appendChild(a);
+            // var base_url = window.location.origin;
+            // "http://stackoverflow.com"
             var fragment_refresh = {
-                url: '',
-                type: 'POST',
+                url: window.location.origin + '/admin/post/category/' + _this.input.value.trim(),
+                type: 'GET',
                 data: {
                     time: new Date().getTime()
                 },
@@ -45,11 +47,30 @@ var AutoComplete = /** @class */ (function () {
                 beforeSend: function () {
                 },
                 success: function (data) {
+                    console.log(data + " first");
                 },
                 error: function () {
+                    console.log("error first");
                 }
             };
-            // jQuery.ajax(fragment_refresh);
+            jQuery.ajax(fragment_refresh);
+            jQuery.getJSON(window.location.origin + '/admin/post/category/' + _this.input.value.trim(), function (data) {
+                console.log(data + " second");
+                // if (data.length) {
+                //     var items = [];
+                //     jQuery.each(data, function (index, val) {
+                //         var cats = [];
+                //         jQuery.each(val.categories, function (cat_index, cat_val) {
+                //             cats.push(cat_val.name);
+                //         });
+                //         cats = cats.join(" , ");
+                //         items.push('<li id="' + index + '"><a href="' + val.link + '"><img src="' + object_live_search_param.template_directory + '/assets/img/svg-icon/search-suggestion-icn.svg" alt="search icon"><p>' + val.title.rendered + ' <span> در دسته : ' + cats + '</span></p></li>');
+                //     });
+                //     this.searchFormSuggestion.innerHTML = `<ul class="live-search">${items.join("")}</ul>`;
+                // } else {
+                //     this.searchFormSuggestion.innerHTML = '<div class="search-progress"><span>موردی یافت نشد !</span></div>';
+                // }
+            });
             _this.list.forEach(function (Element) {
                 if (Element.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     b = document.createElement("DIV");
