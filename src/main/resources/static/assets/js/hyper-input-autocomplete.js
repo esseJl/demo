@@ -1,23 +1,9 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var AutoComplete = /** @class */ (function () {
-    function AutoComplete(input) {
+    function AutoComplete(input, name) {
         this.currentFocus = -1;
         this.input = input;
+        this.inputName = name;
         this.container = (input.parentNode.parentNode);
         this.handler();
     }
@@ -35,8 +21,7 @@ var AutoComplete = /** @class */ (function () {
             a.setAttribute("class", "autocomplete-items");
             _this.container.appendChild(a);
             a.innerHTML = '<div class="search-progress"><span>در حال جستجو ..</span><div class="loader"></div></div>';
-            clearTimeout(requestTimeout);
-            requestTimeout = setTimeout(_this.sendRequest.bind(_this, a, val), 1500);
+            _this.sendRequest(a, val);
         });
         this.input.addEventListener("keydown", function (e) {
             var x = document.querySelectorAll("#" + _this.input.id + "autocomplete-list > div:not(.search-progress):not(.search-progress)");
@@ -65,13 +50,28 @@ var AutoComplete = /** @class */ (function () {
         });
     };
     AutoComplete.prototype.attachment = function (target) {
-        this.input.value = target.querySelector("input").value;
-        this.closeAllLists();
+        if (target)
+            this.input.value = target.querySelector("input").value;
+        if (this.input.value.trim() != '' && !AutoComplete.inputValueArray.includes(this.input.value.trim())) {
+            var div = document.createElement("DIV");
+            var span = document.createElement("SPAN");
+            var inp = document.createElement("INPUT");
+            div.setAttribute("title", this.input.value.trim());
+            span.className = "remove";
+            span.innerHTML = "<i class='icon-close'></i>";
+            inp.setAttribute("name", "category");
+            inp.setAttribute("value", this.input.value.trim());
+            div.appendChild(span);
+            div.appendChild(inp);
+            new ChipsItem(span, div, this.input.value.trim());
+            this.container.appendChild(div);
+            AutoComplete.inputValueArray.push(this.input.value.trim());
+            this.input.value = "";
+        }
     };
     AutoComplete.prototype.sendRequest = function (a, val) {
         var _this = this;
         var b;
-        a.innerHTML = '';
         jQuery.getJSON(window.location.origin + '/admin/post/category/' + this.input.value.trim(), function (data) {
             a.innerHTML = '';
             data.forEach(function (Element) {
@@ -85,7 +85,16 @@ var AutoComplete = /** @class */ (function () {
                 }
             });
             if (!data.length) {
-                a.innerHTML = '<div class="search-progress"><span>موردی یافت نشد !</span></div>';
+                var div = document.createElement("DIV");
+                var button = document.createElement("BUTTON");
+                div.className = "search-progress";
+                div.innerHTML = "<span>موردی یافت نشد !</span>";
+                button.setAttribute("type", "button");
+                button.className = "btn btn-primary";
+                button.innerHTML = "افزودن جدید";
+                button.addEventListener("click", _this.attachment.bind(_this, null));
+                div.appendChild(button);
+                a.appendChild(div);
             }
         }).fail(function () {
             console.log("error in category ajax");
@@ -115,65 +124,19 @@ var AutoComplete = /** @class */ (function () {
             }
         });
     };
+    AutoComplete.inputValueArray = [];
     return AutoComplete;
 }());
-var Chips = /** @class */ (function (_super) {
-    __extends(Chips, _super);
-    function Chips(chipsContainer) {
-        var _this = _super.call(this, document.querySelector("input.has-cat-autocomplete")) || this;
-        _this.addNewBtn = _this.input.nextElementSibling;
-        _this.chipsContainer = chipsContainer;
-        Chips.inputTemp = chipsContainer.previousElementSibling;
-        _this.addNewBtn.addEventListener("click", function (e) {
-            if (_this.input.value.trim() != '' && !Chips.inputValueArray.includes(_this.input.value.trim())) {
-                var span = document.createElement("SPAN");
-                span.className = "remove";
-                span.innerHTML = "<i class='icon-close'></i>";
-                var li = document.createElement("LI");
-                li.setAttribute("title", _this.input.value);
-                li.appendChild(span);
-                li.appendChild(document.createTextNode(_this.input.value));
-                new ChipsItem(span, li, _this.input.value);
-                _this.chipsContainer.appendChild(li);
-                Chips.inputValueArray.push(_this.input.value.trim());
-                Chips.inputTemp.value = Chips.inputValueArray.toString();
-                _this.input.value = "";
-            }
-        });
-        return _this;
-    }
-    Chips.prototype.attachment = function (target) {
-        this.input.value = target.querySelector("input").value;
-        if (!Chips.inputValueArray.includes(this.input.value)) {
-            var span = document.createElement("SPAN");
-            span.className = "remove";
-            span.innerHTML = "<i class='icon-close'></i>";
-            var li = document.createElement("LI");
-            li.setAttribute("title", this.input.value);
-            li.appendChild(span);
-            li.appendChild(document.createTextNode(this.input.value));
-            new ChipsItem(span, li, this.input.value);
-            this.chipsContainer.appendChild(li);
-            Chips.inputValueArray.push(this.input.value);
-            Chips.inputTemp.value = Chips.inputValueArray.toString();
-            this.input.value = "";
-        }
-        this.closeAllLists();
-    };
-    Chips.inputValueArray = [];
-    return Chips;
-}(AutoComplete));
 var ChipsItem = /** @class */ (function () {
-    function ChipsItem(span, item, value) {
+    function ChipsItem(span, div, value) {
         span.addEventListener("click", function (e) {
-            item.remove();
-            var index = Chips.inputValueArray.indexOf(value);
+            div.remove();
+            var index = AutoComplete.inputValueArray.indexOf(value);
             if (index > -1) {
-                Chips.inputValueArray.splice(index, 1);
+                AutoComplete.inputValueArray.splice(index, 1);
             }
-            Chips.inputTemp.value = Chips.inputValueArray.toString();
         });
     }
     return ChipsItem;
 }());
-new Chips(document.querySelector(".cat-addition-result ul"));
+new AutoComplete(document.getElementById("cat-add"), "category");
