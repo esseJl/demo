@@ -22,6 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Collection;
@@ -47,7 +48,9 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-
+                //.requiresChannel().anyRequest().requiresSecure().and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .filterSecurityInterceptorOncePerRequest(true)
@@ -81,8 +84,8 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler loginSuccessHandler() {
         return ((request, response, authentication) -> {
             UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-            System.out.println(principal.getUsername());
-           
+            //System.out.println(principal.getUsername());
+
             //TODO filter principal for redirect
             response.sendRedirect(getServerContextPath());
         });

@@ -3,8 +3,8 @@ package com.example.demo.controller.product;
 import com.example.demo.model.brand.ProductBrand;
 import com.example.demo.model.category.cat4product.ProductCategory;
 import com.example.demo.model.product.Product;
-import com.example.demo.service.category.CategoryService;
 import com.example.demo.service.brand.BrandService;
+import com.example.demo.service.category.cat4product.Cat4ProductService;
 import com.example.demo.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,12 +20,12 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
-    private CategoryService categoryService;
+    private Cat4ProductService categoryService;
     private BrandService brandService;
     private final String active = "product";
 
     @Autowired
-    public ProductController(ProductService productService, CategoryService categoryService, BrandService brandService) {
+    public ProductController(ProductService productService, Cat4ProductService categoryService, BrandService brandService) {
         this.productService = productService;
         this.categoryService = categoryService;
         this.brandService = brandService;

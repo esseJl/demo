@@ -29,8 +29,8 @@ public class Comment {
     @CreationTimestamp
     private Date createDate;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "post_id")
     @NotNull
     private Post post;
 

@@ -45,6 +45,10 @@ public class UserService implements IUserService, IUserResetPassword {
         this.roleRepository = roleRepository;
     }
 
+    public Optional<User> findUserByUserUUID(String userUUID) {
+        return userRepository.findByUserUUID(userUUID);
+    }
+
 
     public boolean isUserPresentWithUserName(String userName) {
         Optional<User> byUserName = userRepository.findByUserName(userName);

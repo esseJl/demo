@@ -8,4 +8,10 @@ import org.springframework.stereotype.Repository;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
 
+    Post findByPostUUID(String postUUID);
+
+    Post save(Post post);
+
+    Post findByUniqueLink(String uniqueLink);
+
 }

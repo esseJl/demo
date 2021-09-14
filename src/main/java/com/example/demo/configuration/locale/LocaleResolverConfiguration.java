@@ -1,5 +1,6 @@
 package com.example.demo.configuration.locale;
 
+import com.github.eloyzone.jalalicalendar.DateConverter;
 import com.ibm.icu.util.ULocale;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,5 +41,6 @@ public class LocaleResolverConfiguration implements WebMvcConfigurer {
         Locale locale = new Locale(ulocale.getLanguage(), ulocale.getCountry());
         return locale;
     }
+    
 
 }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir="rtl" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{admin/layout}">
+
+<head>
+
+    <title>Create New Post</title>
+
+</head>
+<body>
+
+
+<main class="main-content" layout:fragment="content" th:object="${post}">
+    <form th:action="@{/admin/post}" method="post">
+        <section class="row" id="blog-content">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <input type="hidden" th:field="${post.postUUID}">
+                    <label class="form-label">عنوان مقاله</label>
+                    <input type="text" th:field="*{title}" class="form-control"/>
+                    <p class="text-danger" th:each="error: ${#fields.errors('title')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="mb-3">
+                    <label for="editor" class="form-label">محتوا مقاله</label>
+                    <textarea th:field="*{body}" id="editor"></textarea>
+                    <p class="text-danger" th:each="error: ${#fields.errors('body')}"
+                       th:text="${error}">Validation error</p>
+                    <br/>
+                </div>
+            </div>
+            <aside class="col-md-4">
+                <div class="card  mb-3">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#publishcard"
+                         aria-expanded="true"
+                         aria-controls="publishcard">انتشار
+                    </div>
+                    <div class="collapse show" id="publishcard">
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Special title treatment</h5> -->
+                            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            <div class="mb-3">
+                                <label for="release-date" class="form-label">تاریخ انتشار</label>
+                                <input type="text" th:field="*{stringDate}"
+                                       class="form-control form-control-sm pub-date"
+                                       id="release-date"/>
+                                <p class="text-danger" th:each="error: ${#fields.errors('stringDate')}"
+                                   th:text="${error}">Validation error</p>
+
+
+                                <ul>
+                                    <li th:each="state : ${states}">
+                                        <input type="radio" checked name="state" th:value="${state.name()}"
+                                               th:text="${state}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary d-block ms-auto" type="button"
+                                onclick='console.log(tinymce.get("editor").getContent());'>انتشار
+                        </button>
+                        <input class="btn btn-sm btn-primary d-block ms-auto" type="submit"/>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#catcard"
+                         aria-expanded="true" aria-controls="catcard">دسته بندی
+                    </div>
+                    <div class="collapse show" id="catcard">
+                        <div class="card-body">
+                            <div class="has-autocomplete">
+                                <div class="input-group input-group-sm mb-3">
+                                    <input autocomplete="off" type="text" class="form-control has-cat-autocomplete"
+                                           id="cat-add"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-sm">
+                                    <button class="btn btn-primary" type="button"
+                                            id="inputGroup-sizing-sm">افزودن جدید
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cat-addition-result">
+                                <input type="hidden" id="post-categories" name="post-categories">
+                                <ul class="list-unstyled mb-0">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#tagcard"
+                         aria-expanded="true"
+                         aria-controls="tagcard">بر چسب ها
+                    </div>
+                    <div class="collapse show" id="tagcard">
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#slugcard"
+                         aria-expanded="true"
+                         aria-controls="slugcard">پیوند یکتا
+                    </div>
+                    <div class="collapse show" id="slugcard">
+                        <div class="card-body">
+                            <input th:field="*{uniqueLink}" type="text" placeholder="insert Unique link"/>
+                            <p class="text-danger" th:each="error: ${#fields.errors('uniqueLink')}"
+                               th:text="${error}">Validation error</p>
+                            <p class="text-danger" th:text="${uniqueLinkError}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#commentcard"
+                         aria-expanded="true"
+                         aria-controls="commentcard">گفتگو
+                    </div>
+                    <div class="collapse show" id="commentcard">
+                        <div class="card-body">
+                            <div class="form-check">
+                                <input name="comment-enable" class="form-check-input" type="checkbox" value="enable"
+                                       id="flexCheckChecked"
+                                       checked>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    پذیرفتن دیدگاه
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </form>
+</main>
+
+</body>
+</html>

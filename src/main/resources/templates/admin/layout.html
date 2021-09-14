@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" dir="rtl" xmlns:layout="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.thymeleaf.org" dir="rtl" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
@@ -15,11 +16,11 @@
         <!-- css assets -->
         <!-- bootstrap -->
         <link rel="stylesheet" href="../../static/assets/css/bootstrap.rtl.min.css"
-              th:href="@{../assets/css/bootstrap.rtl.min.css}"
+              th:href="@{/assets/css/bootstrap.rtl.min.css}"
         >
         <!-- admin layout -->
         <link rel="stylesheet" href="../../static/assets/css/hyper-admin-layout-style.css"
-              th:href="@{../assets/css/hyper-admin-layout-style.css}"
+              th:href="@{/assets/css/hyper-admin-layout-style.css}"
         >
     </th:block>
 
@@ -27,15 +28,15 @@
     <th:block th:fragment="basic-blog-link">
         <!-- datepicker -->
         <link rel="stylesheet" href="../../static/assets/css/persian-datepicker.min.css"
-              th:href="@{../assets/css/persian-datepicker.min.css}"
+              th:href="@{/assets/css/persian-datepicker.min.css}"
         >
         <!-- select2 -->
         <link rel="stylesheet" href="../../static/assets/css/select2.min.css"
-              th:href="@{../assets/css/select2.min.css}"
+              th:href="@{/assets/css/select2.min.css}"
         >
         <!-- blog admin  -->
         <link rel="stylesheet" href="../../static/assets/css/hyper-blog-style.css"
-              th:href="@{../assets/css/hyper-blog-style.css}"
+              th:href="@{/assets/css/hyper-blog-style.css}"
         >
     </th:block>
 
@@ -51,12 +52,12 @@
         <a href="#" class="logo">
                 <span class="logo-lg">
                     <img src="../../static/assets/images/logo.png" alt="" height="16"
-                         th:src="@{../assets/images/logo.png}"
+                         th:src="@{/assets/images/logo.png}"
                     >
                 </span>
             <span class="logo-sm">
                     <img src="../../static/assets/images/logo_sm.png" alt="" height="16"
-                         th:src="@{../assets/images/logo_sm.png}"
+                         th:src="@{/assets/images/logo_sm.png}"
                     >
                 </span>
         </a>
@@ -326,12 +327,14 @@
                            aria-haspopup="false" aria-expanded="false">
                                 <span class="account-user-avatar">
                                     <img src="../../static/assets/images/avatar-1.jpg" alt="user-image"
-                                         th:src="@{../assets/images/avatar-1.jpg}"
+                                         th:src="@{/assets/images/avatar-1.jpg}"
                                     >
                                 </span>
                             <span>
-                                    <span class="account-user-name">شایان غزالی</span>
-                                    <span class="account-position">مدیر کل</span>
+                                    <span sec:authorize="isAuthenticated()" sec:authentication="name"
+                                          class="account-user-name">شایان غزالی</span>
+                                    <span sec:authentication="principal.authorities"
+                                          class="account-position">مدیر کل</span>
                                 </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end">
@@ -379,7 +382,7 @@
 
         <main class="main-content" role="main">
             <div class="body-container">
-                <section layout:fragment="content" id="blog-content" class="row">
+                <section layout:fragment="content" class="row">
                     <h1>Layout -> content </h1>
                 </section>
             </div>
@@ -427,13 +430,16 @@
 <th:block th:fragment="basic-js-src">
     <!-- js assets -->
     <script src="../../static/assets/js/jquery.min.js"
-            th:src="@{../assets/js/jquery.min.js}"
+            th:src="@{/assets/js/jquery.min.js}"
     ></script>
     <script src="../../static/assets/js/bootstrap.bundle.min.js"
-            th:src="@{../assets/js/bootstrap.bundle.min.js}"
+            th:src="@{/assets/js/bootstrap.bundle.min.js}"
     ></script>
     <script src="../../static/assets/js/hyper-admin-layout-functions.js"
-            th:src="@{../assets/js/hyper-admin-layout-functions.js}"
+            th:src="@{/assets/js/hyper-admin-layout-functions.js}"
+    ></script>
+    <script src="../../static/assets/js/hyper-input-autocomplete.js"
+            th:src="@{/assets/js/hyper-input-autocomplete.js}"
     ></script>
 </th:block>
 
@@ -441,21 +447,21 @@
 <th:block th:fragment="basic-blog-js-src">
     <!-- only for datepicker start -->
     <script src="../../static/assets/js/persian-date.min.js"
-            th:src="@{../assets/js/persian-date.min.js}"
+            th:src="@{/assets/js/persian-date.min.js}"
     ></script>
     <script src="../../static/assets/js/persian-datepicker.min.js"
-            th:src="@{../assets/js/persian-datepicker.min.js}"
+            th:src="@{/assets/js/persian-datepicker.min.js}"
     ></script>
     <!-- only for datepicker end -->
 
     <!-- only for select2 start -->
     <script src="../../static/assets/js/select2.min.js"
-            th:src="@{../assets/js/select2.min.js}"
+            th:src="@{/assets/js/select2.min.js}"
     ></script>
     <!-- only for select2 end -->
     <!-- only for tinymce start -->
     <script src="../../static/assets/js/tinymce.min.js"
-            th:src="@{../assets/js/tinymce.min.js}"
+            th:src="@{/assets/js/tinymce.min.js}"
     ></script>
     <!-- only for tinymce end -->
 

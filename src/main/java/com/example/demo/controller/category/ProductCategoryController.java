@@ -1,7 +1,7 @@
 package com.example.demo.controller.category;
 
 import com.example.demo.model.category.cat4product.ProductCategory;
-import com.example.demo.service.category.CategoryService;
+import com.example.demo.service.category.cat4product.Cat4ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,11 +15,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/category")
 public class ProductCategoryController {
-    private CategoryService categoryService;
+    private Cat4ProductService categoryService;
     private final String active = "category";
 
     @Autowired
-    public ProductCategoryController(CategoryService categoryService) {
+    public ProductCategoryController(Cat4ProductService categoryService) {
         this.categoryService = categoryService;
     }
 
@@ -56,8 +56,7 @@ public class ProductCategoryController {
     @ResponseBody
     @RequestMapping(value = "/{categoryUUID}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductCategory getCategory(HttpServletResponse response,
-                                       @PathVariable("categoryUUID") String categoryUUID) {
+    public ProductCategory getCategory(@PathVariable("categoryUUID") String categoryUUID) {
         return categoryService.findOne(categoryUUID);
     }
 }

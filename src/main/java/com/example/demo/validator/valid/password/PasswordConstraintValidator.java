@@ -18,7 +18,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     MessageResolver resolver;
 
     @Override
-    public void initialize(ValidPassword constraintAnnotation) {
+    public void initialize(ValidPassword validPassword) {
         URL resource = this.getClass().getClassLoader().getResource("messages.properties");
         Properties props = new Properties();
         try {

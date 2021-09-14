@@ -1,7 +1,7 @@
-package com.example.demo.service.category;
+package com.example.demo.service.category.cat4product;
 
 import com.example.demo.model.category.cat4product.ProductCategory;
-import com.example.demo.repository.category.CategoryRepository;
+import com.example.demo.repository.category.cat4product.Cat4ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,27 +10,27 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class CategoryService {
+public class Cat4ProductService {
 
-    private CategoryRepository categoryRepository;
+    private Cat4ProductRepository cat4ProductRepository;
 
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public Cat4ProductService(Cat4ProductRepository cat4ProductRepository) {
+        this.cat4ProductRepository = cat4ProductRepository;
     }
 
     public ProductCategory saveCategory(ProductCategory category) {
         category.setCategoryUUID(UUID.randomUUID().toString());
-        return categoryRepository.save(category);
+        return cat4ProductRepository.save(category);
     }
 
     public List<ProductCategory> getAllCategory() {
-        return categoryRepository.findAll();
+        return cat4ProductRepository.findAll();
     }
 
     public ProductCategory findOne(String categoryUUID) {
-        Optional<ProductCategory> byCategoryUUID = categoryRepository.findByCategoryUUID(categoryUUID);
+        Optional<ProductCategory> byCategoryUUID = cat4ProductRepository.findByCategoryUUID(categoryUUID);
         byCategoryUUID.orElseThrow();
         return byCategoryUUID.get();
     }
@@ -38,6 +38,6 @@ public class CategoryService {
     public ProductCategory updateCategory(String categoryUUID, String categoryName) {
         ProductCategory category = findOne(categoryUUID);
         category.setName(categoryName);
-        return categoryRepository.save(category);
+        return cat4ProductRepository.save(category);
     }
 }

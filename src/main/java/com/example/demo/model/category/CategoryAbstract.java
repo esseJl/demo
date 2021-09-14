@@ -3,8 +3,8 @@ package com.example.demo.model.category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Categories")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -15,14 +15,28 @@ public abstract class CategoryAbstract {
     @JsonIgnore
     private Long id;
 
-    @Column(unique = true)
+    @Column
     private String categoryUUID;
 
-    @NotBlank
-    @Size(min = 2, max = 30)
+    @ManyToOne
+    @JoinColumn(name = "FK_PARENT_ID")
+    private CategoryAbstract parent;
+
+    @OneToMany(mappedBy = "parent")
+    public List<CategoryAbstract> children = new ArrayList<>();
+
     private String name;
 
     public CategoryAbstract() {
+    }
+
+    public CategoryAbstract(String name) {
+        this.name = name;
+    }
+
+    public CategoryAbstract(String catName, String uuid) {
+        this.name = catName;
+        this.categoryUUID = uuid;
     }
 
     public Long getId() {
@@ -48,4 +62,30 @@ public abstract class CategoryAbstract {
     public void setName(String name) {
         this.name = name;
     }
+
+    public CategoryAbstract getParent() {
+        return parent;
+    }
+
+    public void setParent(CategoryAbstract parentCategory) {
+        this.parent = parentCategory;
+    }
+
+    public List<CategoryAbstract> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<CategoryAbstract> children) {
+        this.children = children;
+    }
+
+    public void addChildren(CategoryAbstract cat) {
+        this.children.add(cat);
+    }
+
+    public void removeChildren(CategoryAbstract cat) {
+        this.children.remove(cat);
+    }
+
+
 }
