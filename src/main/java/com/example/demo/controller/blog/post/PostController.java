@@ -23,15 +23,11 @@ import java.util.List;
 public class PostController {
 
     private PostService postService;
-    private Category4PostService category4PostService;
-    private TagService tagService;
 
-    public PostController(PostService postService,
-                          Category4PostService category4PostService,
-                          TagService tagService) {
+
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.category4PostService = category4PostService;
-        this.tagService = tagService;
+
     }
 
 
@@ -59,9 +55,6 @@ public class PostController {
 
         model.addAttribute("states", PostState.values());
 
-        //System.out.println(state);
-        //post.setPostCategory(category4PostService.parseCategory(categories));
-        //post.setTags(tagService.parseTags(tags));
 
         if (postService.isUniqueLinkExist(post.getUniqueLink())) {
             model.addAttribute("uniqueLinkError", "already.exist.unique.link");
@@ -71,12 +64,6 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "/admin/blog/blog-details";
         }
-
-
-        LocalDate localDate = postService.parseDate(post.getStringDate());
-
-        //System.out.println(localDate);
-        post.setReleaseDate(localDate);
 
         Post newPost = postService.createNewPost(post, userPrincipal.getUser());
         final String path = "/admin/post/" + newPost.getPostUUID();

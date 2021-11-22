@@ -106,10 +106,10 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
     private String getServerContextPath() {
 
-        if (environment.containsProperty("server.context-path")) {
+        if (!environment.containsProperty("server.servlet.context-path")) {
             return "/";
         } else {
-            String serverContextPath = environment.getProperty("server.context-path");
+            String serverContextPath = environment.getProperty("server.servlet.context-path");
             if (serverContextPath == null || serverContextPath.trim().equals(""))
                 return "/";
 
@@ -118,7 +118,6 @@ public class AppSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }

@@ -31,6 +31,7 @@ public class User implements Serializable {
     @NotBlank
     @Size(min = 4, max = 16)
     private String firstName;
+
     @NotBlank
     @Size(min = 4, max = 16)
     private String lastName;
